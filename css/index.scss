@@ -1,0 +1,119 @@
+// compileOnSave
+// compileOnSave: true
+@import 'colors';
+@import 'common';
+@font-face {
+    font-family: 'hytiaotiaotijregular';
+    src: url('../font/5.0-webfont.woff2') format('woff2'), url('../font/5.0-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@include clearStyle;
+
+body,
+html {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+html {
+    font-size: 100px;
+}
+
+body {
+    font-size: px2rem(16px);
+    font-family: "hytiaotiaotijregular", "Arial", "Microsoft YaHei UI", sans-serif;
+}
+// 背景开始
+
+.background {
+    background-image: url('../img/bg.jpg');
+    background-size: cover;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+// 背景结束
+// 搜索开始
+
+.search-div {
+    @extend %fade-style;
+    color: #fff;
+    left: 7%;
+    opacity: 0;
+    position: absolute;
+    top: 17%;
+
+    h1 {
+        font-size: px2rem(60px);
+    }
+
+    h2 {
+        font-size: px2rem(18px);
+    }
+
+    .search-layout {
+        margin-top: px2rem(40px);
+        position: relative;
+        $button-size: 30px;
+
+        input {
+            @include font-dpr(30px);
+            border: 0;
+            color: $search-color;
+            opacity: 0.8;
+            padding: px2rem(12px) px2rem(20px+$button-size) px2rem(12px) px2rem(20px);
+            width: 5rem;
+        }
+
+        .search-button {
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjAiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgMjQgMjQiIGZpbGw9IiM2NjY2NjYiID4gICAgPHBhdGggZD0iTSA5IDIgQyA1LjEgMiAyIDUuMSAyIDkgQyAyIDEyLjkgNS4xIDE2IDkgMTYgQyAxMC43MjI0MjggMTYgMTIuMjg3NzkgMTUuMzg2MTk2IDEzLjUgMTQuMzc1IEwgMTQgMTQuODc1IEwgMTQgMTUuNjg3NSBMIDIwLjMxMjUgMjIgTCAyMiAyMC4zMTI1IEwgMTUuNjg3NSAxNCBMIDE0LjgxMjUgMTQgTCAxNC4zNDM3NSAxMy41MzEyNSBDIDE1LjM3MjEzNSAxMi4zMTQzODggMTYgMTAuNzM4NjA2IDE2IDkgQyAxNiA1LjEgMTIuOSAyIDkgMiB6IE0gOSA0IEMgMTEuOCA0IDE0IDYuMiAxNCA5IEMgMTQgMTEuOCAxMS44IDE0IDkgMTQgQyA2LjIgMTQgNCAxMS44IDQgOSBDIDQgNi4yIDYuMiA0IDkgNCB6Ij48L3BhdGg+PC9zdmc+');
+            top: 0;
+            margin: px2rem(12px);
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            height: px2rem($button-size);
+            width: px2rem($button-size);
+        }
+    }
+}
+// 搜索结束
+// 时间, 天气 开始
+
+.top-right-layout {
+    position: absolute;
+    height: px2rem(50px);
+    right: px2rem(20px);
+    color: #fff;
+
+    .clock {
+        @include font-dpr(60px);
+    }
+
+    .weather {
+        @include font-dpr(22px);
+        float: right;
+        margin-top: px2rem(10px);
+        margin-left: px2rem(10px);
+
+        .weather-name {
+            float: right;
+            margin-right: px2rem(10px);
+        }
+
+        .weather-state {
+            float: right;
+        }
+
+        .city {
+            @include font-dpr(24px);
+        }
+    }
+}
+// 时间, 天气 结束
