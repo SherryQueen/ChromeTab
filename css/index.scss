@@ -23,10 +23,10 @@ html {
 
 body {
     font-size: px2rem(16px);
-    font-family: "hytiaotiaotijregular", "Arial", "Microsoft YaHei UI", sans-serif;
+    font-family: 'hytiaotiaotijregular', 'Arial', 'Microsoft YaHei UI', sans-serif;
 }
-// 背景开始
-
+$bg-padding: px2rem(10px);
+/* 背景开始 */
 .background {
     background-image: url('../img/bg.jpg');
     background-size: cover;
@@ -38,9 +38,8 @@ body {
     position: absolute;
     z-index: -1;
 }
-// 背景结束
-// 搜索开始
-
+/* 背景结束 */
+/* 搜索开始 */
 .search-div {
     @extend %fade-style;
     color: #fff;
@@ -83,13 +82,12 @@ body {
         }
     }
 }
-// 搜索结束
-// 时间, 天气 开始
-
+/* 搜索结束 */
+/* 时间, 天气 开始 */
 .top-right-layout {
     position: absolute;
     height: px2rem(50px);
-    right: px2rem(20px);
+    right: $bg-padding;
     color: #fff;
 
     .clock {
@@ -116,4 +114,101 @@ body {
         }
     }
 }
-// 时间, 天气 结束
+/* 时间, 天气 结束 */
+/* 常访问页面 开始 */
+.bottom-layout {
+    $width: px2rem(420px);
+    position: absolute;
+    width: $width;
+    bottom: $bg-padding;
+    left: 50%;
+    margin-left: -1*$width/2;
+    overflow: hidden;
+
+    .visited-item {
+        @include link-style;
+        text-align: center;
+        width: px2rem(60px);
+
+        a {
+            text-decoration: none;
+        }
+
+        img {
+            $img-size: px2rem(16px);
+            height: $img-size;
+            width: $img-size;
+        }
+
+        .visited-item-title {
+            @include font-dpr(12px);
+            color: $white;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    }
+}
+/* 常访问页面 结束 */
+/* 菜单 开始 */
+.bottom-right-layout {
+    @include font-dpr(16px);
+    bottom: $bg-padding;
+    right: 0;
+    position: absolute;
+
+    li {
+        float: right;
+        list-style: none;
+
+        a {
+            @include link-style;
+        }
+    }
+
+    .nav-menu {
+        $nav-line-width: px2rem(20px);
+
+        .nav-menu-line {
+            transition: 0.3s all;
+            background-color: $white;
+            display: block;
+            line-height: 2px;
+            height: 2px;
+            width: $nav-line-width;
+        }
+
+        .bottom,
+        .top {
+            margin: 3px 0;
+        }
+
+        .middle {
+            margin: 0;
+        }
+
+        &:hover > .bottom,
+        &:hover > .top {
+            margin: 1px 0;
+        }
+
+        &:hover > .middle {
+            margin: 5px 0;
+        }
+
+        &.collapse > .top {
+            transform: rotate(-45deg);
+            width: $nav-line-width / 3 * 2;
+        }
+
+        &.collapse > .middle {
+            width: 0;
+        }
+
+        &.collapse > .bottom {
+            transform: rotate(45deg);
+            width: $nav-line-width / 3 * 2;
+        }
+    }
+}
+/* 菜单 结束 */

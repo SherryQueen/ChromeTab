@@ -1,5 +1,8 @@
+@import 'colors';
+/**
+ * 样式清0
+ */
 @mixin clearStyle {
-    // 样式清0
     body,
     dd,
     dl,
@@ -40,13 +43,35 @@
     }
     @return ($px / $base-px) * 1rem;
 }
-
+/**
+ * 样式渐变
+ */
 %fade-style {
-    // 渐变样式
     opacity: 0;
     transition: opacity 0.5s;
 
     &.show {
         opacity: 0.8;
+    }
+}
+/**
+ * 链接样式
+ */
+@mixin link-style($font-color:$white, $normal-background:$transparent, $hover-background:$active, $visited-background:$transparent) {
+    background-color: $normal-background;
+    display: inline-block;
+    cursor: pointer;
+    color: $font-color;
+    padding: 8px 12px;
+    text-decoration: none;
+
+    &:hover {
+        background-color: $hover-background;
+        color: $font-color;
+    }
+
+    &:visited {
+        background-color: $visited-background;
+        color: $font-color;
     }
 }

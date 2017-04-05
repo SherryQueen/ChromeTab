@@ -1,15 +1,13 @@
 (function (window) {
     const _ = {}
 
-    function _addURLParam(url, name, value) {
-        url += (url.indexOf('?') == -1 ? '?' : '&')
-        url += encodeURIComponent(name) + '=' + encodeURIComponent(value)
-        return url
-    }
-
     _.ready = fn => {
         if (document.readyState !== 'loading') fn()
         else document.addEventListener('DOMContentLoaded', fn)
+    }
+
+    _.isBlank = str => {
+        return !(str && str.trim().length !== 0)
     }
 
     _.formDate = (date, formStr = 'yyyy-HH-dd hh:mm:ss') => {
@@ -31,11 +29,18 @@
             .replace('ss', second > 9 ? second : `0${second}`)
     }
 
+    /** Ajax About start **/
     const http = {}
     http.ajax = _ajax
     http.get = _get
     http.post = _post
     _.http = http
+
+    function _addURLParam(url, name, value) {
+        url += (url.indexOf('?') == -1 ? '?' : '&')
+        url += encodeURIComponent(name) + '=' + encodeURIComponent(value)
+        return url
+    }
 
     function _ajax(params, data = {}) {
         return new Promise(function (resolve, reject) {
@@ -78,6 +83,65 @@
         params['type'] = 'POST'
         return _ajax(params, data)
     }
+    /** Ajax About end **/
+
+
+    /** NodeList扩展 开始 **/
+    window.$ = selector => {
+        return document.querySelectorAll(selector)
+    }
+    const eventSet = new WeakSet()
+
+    function getUniqID(eventName = '') {
+        const res = `${eventName}${Math.random().toString(36).substr(2,10)}`
+        return eventSet.has(res) ? getUniqID(eventName) : res
+    }
+
+    function evalDataSet(old, nd) {
+        return old ? `${old}|${nd}` : nd
+    }
+    /** 委托实现 */
+    NodeList.prototype.on = function (event, selector, fn) {
+        const eid = getUniqID(event),
+            self = Array.from(this)
+        if (typeof (selector) === 'function') {
+            fn = selector
+            selector = ''
+        }
+        if (selector) {
+            eventSet[eid] = e => {
+                const els = $(selector),
+                    obj = e.target
+                let match
+                for (let i = 0, len = els.length; i < len; i++) {
+                    /** 点击对象即为委托对象 **/
+                    if (obj.matches(selector)) {
+                        fn(e)
+                        e.stopPropagation()
+                        return;
+                    } else if (match = obj.closest(selector)) {
+                        /** 委托对象为点击对象的祖父节点 **/
+                        for (let j = 0; j < len; j++) {
+                            if (els[j].contains(match)) {
+                                fn(e)
+                                e.stopPropagation()
+                                return
+                            }
+                        }
+                    }
+                }
+            }
+        } else eventSet[eid] = fn
+
+        /** 为元素绑定委托事件 **/
+        for (let i = 0, len = self.length; i < len; i++) {
+            const ele = self[i]
+            if (!ele.dataSet) ele.dataSet = {}
+            ele.dataSet[event] = evalDataSet(ele.dataSet[event], eid)
+            ele.addEventListener(event, eventSet[eid])
+        }
+    }
+    /** NodeList扩展 结束 **/
 
     window._ = _
 })(window)

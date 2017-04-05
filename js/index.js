@@ -53,6 +53,57 @@ function showWeather() {
 }
 
 /**
+ * 初始化事件
+ * @return {[type]} [description]
+ */
+function initEvents() {
+    $('.bottom-right-layout').on('click', 'a', function (e) {
+        const url = e.target.getAttribute('data-url')
+        if (_.isBlank(url)) {
+
+        } else {
+            chrome.tabs.getCurrent(tab => {
+                chrome.tabs.create({
+                    index: tab.index + 1,
+                    active: true,
+                    pinned: false,
+                    url: url
+                })
+            })
+        }
+    })
+}
+
+/** 初始化经常访问页面 */
+function initOften() {
+    chrome.topSites.get(res => {
+        res = res.splice(0, 5)
+        const list = $('.bottom-layout')[0]
+        res.forEach(item => {
+            const li = document.createElement('li')
+            const a = document.createElement('a')
+            const img = document.createElement('img')
+            const title = document.createElement('div')
+
+            li.classList.add('visited-item')
+            li.setAttribute('title', item.title)
+
+            a.setAttribute('href', item.url)
+
+            img.setAttribute('src', `chrome://favicon/${item.url}`)
+
+            title.innerHTML = item.title
+            title.classList.add('visited-item-title')
+
+            a.appendChild(img)
+            a.appendChild(title)
+            li.append(a)
+            list.appendChild(li)
+        })
+    })
+}
+
+/**
  * 初始化加载
  */
 _.ready(() => {
@@ -60,4 +111,7 @@ _.ready(() => {
     showWeather()
     setInterval(showTime, 1000)
     setInterval(showWeather, 1000 * 60 * 5)
+
+    initEvents()
+    initOften()
 })
