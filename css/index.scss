@@ -28,7 +28,6 @@ body {
 $bg-padding: px2rem(10px);
 /* 背景开始 */
 .background {
-    background-image: url('../img/bg.jpg');
     background-size: cover;
     bottom: 0;
     left: 0;
@@ -37,6 +36,11 @@ $bg-padding: px2rem(10px);
     overflow: hidden;
     position: absolute;
     z-index: -1;
+
+    video {
+        min-height: 100%;
+        min-width: 100%;
+    }
 }
 /* 背景结束 */
 /* 搜索开始 */
@@ -115,6 +119,16 @@ $bg-padding: px2rem(10px);
     }
 }
 /* 时间, 天气 结束 */
+/* 背景图片说明 开始 */
+.bottom-left-layout {
+    @include font-dpr(12px);
+    bottom: $bg-padding;
+    color: $white;
+    left: $bg-padding;
+    position: absolute;
+    width: px2rem(300px);
+}
+/* 背景图片说明 结束 */
 /* 常访问页面 开始 */
 .bottom-layout {
     $width: px2rem(420px);
