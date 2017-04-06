@@ -8,7 +8,29 @@
     font-weight: normal;
     font-style: normal;
 }
+@font-face {
+    font-family: 'icon';
+    src: url('../font/fontello.woff2') format('woff2'),url('../font/fontello.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.icon {
+    $icon-size: px2rem(24px);
+    @include font-dpr(24px);
+    cursor: pointer;
+    display: inline-block;
+    width: $icon-size;
+    text-align: center;
+    font-style: normal;
+    font-family: 'icon';
+    -moz-osx-font-smoothing: graycale;
+    -webkit-font-smoothing: antialiased;
+}
 @include clearStyle;
+$slide-menu-width: px2rem(240px);
+$slide-content-width: px2rem(320px);
+$slide-animation-time: 0.8s;
 
 body,
 html {
@@ -93,6 +115,7 @@ $bg-padding: px2rem(10px);
     height: px2rem(50px);
     right: $bg-padding;
     color: #fff;
+    transition: right $slide-animation-time ease;
 
     .clock {
         @include font-dpr(60px);
@@ -116,6 +139,14 @@ $bg-padding: px2rem(10px);
         .city {
             @include font-dpr(24px);
         }
+    }
+
+    &.open {
+        right: $slide-menu-width + $bg-padding;
+    }
+
+    &.full-open {
+        right: $slide-menu-width + $slide-content-width + $bg-padding;
     }
 }
 /* 时间, 天气 结束 */
@@ -170,6 +201,7 @@ $bg-padding: px2rem(10px);
     bottom: $bg-padding;
     right: 0;
     position: absolute;
+    transition: right $slide-animation-time ease;
 
     li {
         float: right;
@@ -224,5 +256,77 @@ $bg-padding: px2rem(10px);
             width: $nav-line-width / 3 * 2;
         }
     }
+
+    &.open {
+        right: $slide-menu-width + $bg-padding;
+    }
+
+    &.full-open {
+        right: $slide-menu-width + $slide-content-width+$bg-padding;
+    }
 }
 /* 菜单 结束 */
+/* 右滑菜单 开始 */
+.right-layout {
+    position: absolute;
+    background: $white;
+    bottom: 0;
+    top: 0;
+    right: -$slide-menu-width - $slide-content-width;
+    // right: 0;
+    width: $slide-menu-width+$slide-content-width;
+    transition: right $slide-animation-time ease;
+
+    &.open {
+        right: -$slide-content-width;
+    }
+
+    &.full-open {
+        right: 0;
+    }
+
+    .slide-menu {
+        height: 100%;
+        width: $slide-menu-width;
+        border-right: solid px2rem(1px) $divider-line;
+        padding-top: px2rem(150px);
+    }
+
+    .slide-content {
+        height: 100%;
+        width: $slide-content-width;
+    }
+}
+
+.slide-menu-item {
+    $height: px2rem(30px);
+    border-bottom: px2rem(1px) solid $divider-line;
+    color: $menu-icon-color;
+    height: $height;
+    line-height: $height;
+    padding: px2rem(10px) px2rem(20px);
+    transition: padding-left 0.5s ease;
+
+    &:last-child {
+        border-bottom: 0;
+    }
+
+    i {
+        margin-right: px2rem(10px);
+        transition: all 0.3s ease;
+    }
+
+    span {
+        position: absolute;
+
+        &::after {
+            height: px2rem(5px);
+        }
+    }
+
+    &:hover {
+        color: $menu-icon-color-hover;
+        padding-left: px2rem(30px);
+    }
+}
+/* 右滑菜单 结束 */

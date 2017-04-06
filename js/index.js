@@ -60,7 +60,14 @@ function initEvents() {
     $('.bottom-right-layout').on('click', 'a', function (e) {
         const url = e.target.getAttribute('data-url')
         if (_.isBlank(url)) {
-
+            const nav = $('.nav-menu')[0]
+            if (slideState) {
+                nav.classList.remove('collapse')
+                showSlide(0)
+            } else {
+                nav.classList.add('collapse')
+                showSlide(1)
+            }
         } else {
             chrome.tabs.getCurrent(tab => {
                 chrome.tabs.create({
@@ -109,9 +116,7 @@ function initOften() {
 function initBackgroud() {
     /** 随机获取一直必应壁纸 **/
     const url = `http://bing.com/HPImageArchive.aspx?format=js&n=1&video=1`
-    _.http.get(url, {
-        idx: Math.floor(Math.random() * 100) + 1,
-    }).then(
+    _.http.get(url).then(
         res => {
             const images = res.images,
                 len = images.length
@@ -149,7 +154,48 @@ function initBackgroud() {
         })
 }
 
-let timer = null
+/**
+ * 显示侧边栏
+ * @param  {[type]} type [0 关闭 1 显示菜单 2 全部展开]
+ * @return {[type]}      [description]
+ */
+function showSlide(type) {
+    if (slideState === type) return
+    slideState = type
+    const topRight = $('.top-right-layout')[0],
+        bottomRight = $('.bottom-right-layout')[0],
+        right = $('.right-layout')[0]
+
+    switch (slideState) {
+        case 0:
+            topRight.classList.remove('open')
+            topRight.classList.remove('full-open')
+            bottomRight.classList.remove('open')
+            bottomRight.classList.remove('full-open')
+            right.classList.remove('open')
+            right.classList.remove('full-open')
+            break;
+        case 1:
+            topRight.classList.add('open')
+            topRight.classList.remove('full-open')
+            bottomRight.classList.add('open')
+            bottomRight.classList.remove('full-open')
+            right.classList.add('open')
+            right.classList.remove('full-open')
+            break;
+        case 2:
+            topRight.classList.remove('open')
+            topRight.classList.add('full-open')
+            bottomRight.classList.remove('open')
+            bottomRight.classList.add('full-open')
+            right.classList.remove('open')
+            right.classList.add('full-open')
+            break;
+    }
+}
+
+let timer = null,
+    slideState = 0
 /**
  * 初始化加载
  */
