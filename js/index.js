@@ -57,7 +57,8 @@ function showWeather() {
  * @return {[type]} [description]
  */
 function initEvents() {
-    $('.bottom-right-layout').on('click', 'a', function (e) {
+    /** 右下常用入口 **/
+    $('.bottom-right-layout').on('click', 'a', e => {
         const url = e.target.getAttribute('data-url')
         if (_.isBlank(url)) {
             const nav = $('.nav-menu')[0]
@@ -77,6 +78,17 @@ function initEvents() {
                     url: url
                 })
             })
+        }
+    })
+
+    /** 侧边菜单项点击事件 **/
+    $('.slide-menu-item').on('click', function (e) {
+        const index = parseInt(this.getAttribute('data-index'))
+        showSlide(2)
+
+        const items = $('.slide-content-item')
+        for (let i = 0, len = items.length; i < len; i++) {
+            items[i].style.display = i === index ? 'block' : 'none'
         }
     })
 }

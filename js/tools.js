@@ -123,7 +123,7 @@
                         /** 委托对象为点击对象的祖父节点 **/
                         for (let j = 0; j < len; j++) {
                             if (els[j].contains(match)) {
-                                fn(e)
+                                fn.call(match, e)
                                 e.stopPropagation()
                                 return
                             }

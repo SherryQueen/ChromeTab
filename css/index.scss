@@ -268,12 +268,12 @@ $bg-padding: px2rem(10px);
 /* 菜单 结束 */
 /* 右滑菜单 开始 */
 .right-layout {
+    $top: px2rem(150px);
     position: absolute;
     background: $white;
     bottom: 0;
     top: 0;
     right: -$slide-menu-width - $slide-content-width;
-    // right: 0;
     width: $slide-menu-width+$slide-content-width;
     transition: right $slide-animation-time ease;
 
@@ -286,14 +286,20 @@ $bg-padding: px2rem(10px);
     }
 
     .slide-menu {
-        height: 100%;
         width: $slide-menu-width;
+        height: 100%;
+        padding-top: $top;
         border-right: solid px2rem(1px) $divider-line;
-        padding-top: px2rem(150px);
+        box-sizing: border-box;
+        float: left;
     }
 
     .slide-content {
+        padding-top: $top;
+        box-sizing: border-box;
         height: 100%;
+        float: right;
+        padding-left: px2rem(10px);
         width: $slide-content-width;
     }
 }
@@ -328,5 +334,9 @@ $bg-padding: px2rem(10px);
         color: $menu-icon-color-hover;
         padding-left: px2rem(30px);
     }
+}
+
+.slide-content-item {
+  
 }
 /* 右滑菜单 结束 */
