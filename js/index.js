@@ -139,26 +139,26 @@ function initBackgroud() {
             $('.bottom-left-layout')[0].innerHTML = title
             const bgDiv = $('.background')[0]
             bgDiv.style.backgroundImage = `url(${bgUrl})`
-            if (image.vid) {
-                /** 如果有视频 **/
-                const video = image.vid
-                videoUrl = `http://cn.bing.com${video.sources[0][2]}`
-
-                const videoDiv = document.createElement('video')
-                videoDiv.setAttribute('src', videoUrl)
-                videoDiv.setAttribute('preload', true)
-                videoDiv.setAttribute('loop', 'loop')
-                videoDiv.setAttribute('autoplay', 'autoplay')
-                bgDiv.appendChild(videoDiv)
-                timer = setInterval(() => {
-                    chrome.tabs.getCurrent(tab => {
-                        const videoObj = $('video')[0]
-                        if (!videoObj) clearInterval(timer)
-                        if (tab.active && videoObj.paused) videoObj.play()
-                        else if (!tab.active && !video.paused) videoObj.pause()
-                    })
-                }, 800)
-            }
+            // if (image.vid) {
+            //     /** 如果有视频 **/
+            //     const video = image.vid
+            //     videoUrl = `http://cn.bing.com${video.sources[0][2]}`
+            //
+            //     const videoDiv = document.createElement('video')
+            //     videoDiv.setAttribute('src', videoUrl)
+            //     videoDiv.setAttribute('preload', true)
+            //     videoDiv.setAttribute('loop', 'loop')
+            //     videoDiv.setAttribute('autoplay', 'autoplay')
+            //     bgDiv.appendChild(videoDiv)
+            //     timer = setInterval(() => {
+            //         chrome.tabs.getCurrent(tab => {
+            //             const videoObj = $('video')[0]
+            //             if (!videoObj) clearInterval(timer)
+            //             if (tab.active && videoObj.paused) videoObj.play()
+            //             else if (!tab.active && !video.paused) videoObj.pause()
+            //         })
+            //     }, 800)
+            // }
         },
         err => {
             alert('请求错误,请联系开发者')
