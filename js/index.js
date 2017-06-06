@@ -1,3 +1,24 @@
+let bgData = ""
+
+/**
+ * 配置存储
+ * @param  {[type]} key   [关键字]
+ * @param  {[type]} value [对应的值]
+ * @return {[type]}       [description]
+ */
+function saveConfig(key, value) {
+    return localStorage.setItem(key, value)
+}
+
+/**
+ * 获取配置
+ * @param  {[type]} key [description]
+ * @return {[type]}     [description]
+ */
+function getConfig(key) {
+    return localStorage.getItem(key)
+}
+
 /**
  * 显示时间
  * @return [type] [description]
@@ -40,13 +61,13 @@ function showWeather() {
                     weatherStateEls[0].innerHTML = weatherState
                 },
                 err => {
-                    alert('请求错误,请联系开发者')
+                    // alert('请求错误,请联系开发者')
                     console.err(err)
                 }
             )
         },
         err => {
-            alert('请求错误,请联系开发者')
+            // alert('请求错误,请联系开发者')
             console.err(err)
         }
     )
@@ -82,7 +103,7 @@ function initEvents() {
     })
 
     /** 侧边菜单项点击事件 **/
-    $('.slide-menu-item').on('click', function (e) {
+    $('.slide-menu-item').on('click', function(e) {
         const index = parseInt(this.getAttribute('data-index'))
         showSlide(2)
 
@@ -123,47 +144,81 @@ function initOften() {
 }
 
 /**
- * 初始化背景
+ * 从Bing获取图片
+ * @param  {Function} cb [回调函数]
  */
-function initBackgroud() {
-    /** 随机获取一直必应壁纸 **/
+function fetchBing(cb) {
     const url = `http://bing.com/HPImageArchive.aspx?format=js&n=1&video=1`
     _.http.get(url).then(
         res => {
             const images = res.images,
                 len = images.length
             const image = images[0]
-            let videoUrl,
-                title = image.copyright,
-                bgUrl = `http://cn.bing.com${image.url}`
-            $('.bottom-left-layout')[0].innerHTML = title
-            const bgDiv = $('.background')[0]
-            bgDiv.style.backgroundImage = `url(${bgUrl})`
-            // if (image.vid) {
-            //     /** 如果有视频 **/
-            //     const video = image.vid
-            //     videoUrl = `http://cn.bing.com${video.sources[0][2]}`
-            //
-            //     const videoDiv = document.createElement('video')
-            //     videoDiv.setAttribute('src', videoUrl)
-            //     videoDiv.setAttribute('preload', true)
-            //     videoDiv.setAttribute('loop', 'loop')
-            //     videoDiv.setAttribute('autoplay', 'autoplay')
-            //     bgDiv.appendChild(videoDiv)
-            //     timer = setInterval(() => {
-            //         chrome.tabs.getCurrent(tab => {
-            //             const videoObj = $('video')[0]
-            //             if (!videoObj) clearInterval(timer)
-            //             if (tab.active && videoObj.paused) videoObj.play()
-            //             else if (!tab.active && !video.paused) videoObj.pause()
-            //         })
-            //     }, 800)
-            // }
+            let title = image.copyright,
+                bgSrc = `http://cn.bing.com${image.url}`
+            cb(null, title, bgSrc)
         },
         err => {
-            alert('请求错误,请联系开发者')
+            // alert('请求错误,请联系开发者')
             console.err(err)
+            cb(err)
         })
+}
+
+/**
+ * 应用背景设置
+ * @param  {[type]} title [左下标题]
+ * @param  {[type]} bgSrc [背景图片]
+ * @return {[type]}       [description]
+ */
+function applyBackground(title, bgSrc) {
+    if (title) $('.bottom-left-layout')[0].innerHTML = title
+    if (bgSrc) $('.background')[0].style.backgroundImage = `url(${bgSrc})`
+}
+
+/**
+ * 初始化背景
+ */
+function initBackgroud() {
+    const backgroundTitle = getConfig("backgroundTitle")
+    bgData = getConfig("backgroundSrc")
+    if (backgroundTitle || bgData) applyBackground(backgroundTitle, bgData)
+    else {
+        // 获取Bing图片
+        fetchBing((err, title, bgSrc) => {
+            if (!err) applyBackground(title, bgSrc)
+        })
+    }
+
+    /** 初始化自定义动作 */
+    // 自定义图片上传
+    $('#fileUpload').on('change', function() {
+        const file = this.files[0]
+        if (/image\/w+/.test(file.type)) return alert('必须上传图片文件')
+        const reader = new FileReader()
+        reader.readAsDataURL(file)
+        reader.onload = function() {
+            bgData = this.result
+            applyBackground(null, bgData)
+        }
+    })
+
+    // 背景应用设置
+    $('#backgroundApply').on('click', () => {
+        const title = $('#backgroundText')[0].value.trim()
+        applyBackground(title, null)
+        saveConfig('backgroundTitle', title)
+        saveConfig('backgroundSrc', bgData)
+    })
+
+    // 背景设置重置
+    $('#backgroundReset').on('click', () => {
+        fetchBing((err, title, bgSrc) => {
+            if (!err) applyBackground(title, bgSrc)
+        })
+        saveConfig('backgroundTitle', '')
+        saveConfig('backgroundSrc', '')
+    })
 }
 
 /**

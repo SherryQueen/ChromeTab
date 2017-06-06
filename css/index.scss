@@ -16,8 +16,8 @@
 }
 
 .icon {
-    $icon-size: px2rem(24px);
-    @include font-dpr(24px);
+    $icon-size: 24px;
+    font-size: 24px;
     cursor: pointer;
     display: inline-block;
     width: $icon-size;
@@ -28,8 +28,8 @@
     -webkit-font-smoothing: antialiased;
 }
 @include clearStyle;
-$slide-menu-width: px2rem(240px);
-$slide-content-width: px2rem(320px);
+$slide-menu-width: 240px;
+$slide-content-width: 320px;
 $slide-animation-time: 0.8s;
 
 body,
@@ -44,11 +44,11 @@ html {
 }
 
 body {
-    font-size: px2rem(16px);
+    font-size: 16px;
     font-family: 'hytiaotiaotijregular', 'Arial', 'Microsoft YaHei UI', sans-serif;
 }
-$bg-padding: px2rem(10px);
-/* 背景开始 */
+$bg-padding: 10px; /* 背景开始 */
+
 .background {
     background-size: cover;
     bottom: 0;
@@ -66,6 +66,7 @@ $bg-padding: px2rem(10px);
 }
 /* 背景结束 */
 /* 搜索开始 */
+
 .search-div {
     @extend %fade-style;
     color: #fff;
@@ -75,61 +76,62 @@ $bg-padding: px2rem(10px);
     top: 17%;
 
     h1 {
-        font-size: px2rem(60px);
+        font-size: 60px;
     }
 
     h2 {
-        font-size: px2rem(18px);
+        font-size: 18px;
     }
 
     .search-layout {
-        margin-top: px2rem(40px);
+        margin-top: 40px;
         position: relative;
         $button-size: 30px;
 
         input {
-            @include font-dpr(30px);
+            font-size: 30px;
             border: 0;
             color: $search-color;
             opacity: 0.8;
-            padding: px2rem(12px) px2rem(20px+$button-size) px2rem(12px) px2rem(20px);
+            padding: 12px 20px+$button-size 12px 20px;
             width: 5rem;
         }
 
         .search-button {
             background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjAiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgMjQgMjQiIGZpbGw9IiM2NjY2NjYiID4gICAgPHBhdGggZD0iTSA5IDIgQyA1LjEgMiAyIDUuMSAyIDkgQyAyIDEyLjkgNS4xIDE2IDkgMTYgQyAxMC43MjI0MjggMTYgMTIuMjg3NzkgMTUuMzg2MTk2IDEzLjUgMTQuMzc1IEwgMTQgMTQuODc1IEwgMTQgMTUuNjg3NSBMIDIwLjMxMjUgMjIgTCAyMiAyMC4zMTI1IEwgMTUuNjg3NSAxNCBMIDE0LjgxMjUgMTQgTCAxNC4zNDM3NSAxMy41MzEyNSBDIDE1LjM3MjEzNSAxMi4zMTQzODggMTYgMTAuNzM4NjA2IDE2IDkgQyAxNiA1LjEgMTIuOSAyIDkgMiB6IE0gOSA0IEMgMTEuOCA0IDE0IDYuMiAxNCA5IEMgMTQgMTEuOCAxMS44IDE0IDkgMTQgQyA2LjIgMTQgNCAxMS44IDQgOSBDIDQgNi4yIDYuMiA0IDkgNCB6Ij48L3BhdGg+PC9zdmc+');
             top: 0;
-            margin: px2rem(12px);
+            margin: 12px;
             position: absolute;
             bottom: 0;
             right: 0;
-            height: px2rem($button-size);
-            width: px2rem($button-size);
+            height: $button-size;
+            width: $button-size;
         }
     }
 }
 /* 搜索结束 */
 /* 时间, 天气 开始 */
+
 .top-right-layout {
     position: absolute;
-    height: px2rem(50px);
+    height: 50px;
     right: $bg-padding;
     color: #fff;
     transition: right $slide-animation-time ease;
 
     .clock {
-        @include font-dpr(60px);
+        font-size: 60px;
     }
 
     .weather {
-        @include font-dpr(22px);
+        font-size: 22px;
         float: right;
-        margin-top: px2rem(10px);
-        margin-left: px2rem(10px);
+        margin-top: 10px;
+        margin-left: 10px;
 
         .weather-name {
             float: right;
-            margin-right: px2rem(10px);
+            margin-right: 10px;
         }
 
         .weather-state {
@@ -137,7 +139,7 @@ $bg-padding: px2rem(10px);
         }
 
         .city {
-            @include font-dpr(24px);
+            font-size: 24px;
         }
     }
 
@@ -151,18 +153,20 @@ $bg-padding: px2rem(10px);
 }
 /* 时间, 天气 结束 */
 /* 背景图片说明 开始 */
+
 .bottom-left-layout {
-    @include font-dpr(12px);
+    font-size: 12px;
     bottom: $bg-padding;
     color: $white;
     left: $bg-padding;
     position: absolute;
-    width: px2rem(300px);
+    width: 300px;
 }
 /* 背景图片说明 结束 */
 /* 常访问页面 开始 */
+
 .bottom-layout {
-    $width: px2rem(420px);
+    $width: 420px;
     position: absolute;
     width: $width;
     bottom: $bg-padding;
@@ -173,20 +177,20 @@ $bg-padding: px2rem(10px);
     .visited-item {
         @include link-style;
         text-align: center;
-        width: px2rem(60px);
+        width: 60px;
 
         a {
             text-decoration: none;
         }
 
         img {
-            $img-size: px2rem(16px);
+            $img-size: 16px;
             height: $img-size;
             width: $img-size;
         }
 
         .visited-item-title {
-            @include font-dpr(12px);
+            font-size: 12px;
             color: $white;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -196,8 +200,9 @@ $bg-padding: px2rem(10px);
 }
 /* 常访问页面 结束 */
 /* 菜单 开始 */
+
 .bottom-right-layout {
-    @include font-dpr(16px);
+    font-size: 16px;
     bottom: $bg-padding;
     right: 0;
     position: absolute;
@@ -213,7 +218,7 @@ $bg-padding: px2rem(10px);
     }
 
     .nav-menu {
-        $nav-line-width: px2rem(20px);
+        $nav-line-width: 20px;
 
         .nav-menu-line {
             transition: 0.3s all;
@@ -267,8 +272,9 @@ $bg-padding: px2rem(10px);
 }
 /* 菜单 结束 */
 /* 右滑菜单 开始 */
+
 .right-layout {
-    $top: px2rem(150px);
+    $top: 150px;
     position: absolute;
     background: $white;
     bottom: 0;
@@ -289,7 +295,7 @@ $bg-padding: px2rem(10px);
         width: $slide-menu-width;
         height: 100%;
         padding-top: $top;
-        border-right: solid px2rem(1px) $divider-line;
+        border-right: solid 1px $divider-line;
         box-sizing: border-box;
         float: left;
     }
@@ -299,18 +305,18 @@ $bg-padding: px2rem(10px);
         box-sizing: border-box;
         height: 100%;
         float: right;
-        padding-left: px2rem(10px);
+        padding-left: 10px;
         width: $slide-content-width;
     }
 }
 
 .slide-menu-item {
-    $height: px2rem(30px);
-    border-bottom: px2rem(1px) solid $divider-line;
+    $height: 30px;
+    border-bottom: 1px solid $divider-line;
     color: $menu-icon-color;
     height: $height;
     line-height: $height;
-    padding: px2rem(10px) px2rem(20px);
+    padding: 10px 20px;
     transition: padding-left 0.5s ease;
 
     &:last-child {
@@ -318,7 +324,7 @@ $bg-padding: px2rem(10px);
     }
 
     i {
-        margin-right: px2rem(10px);
+        margin-right: 10px;
         transition: all 0.3s ease;
     }
 
@@ -326,17 +332,32 @@ $bg-padding: px2rem(10px);
         position: absolute;
 
         &::after {
-            height: px2rem(5px);
+            height: 5px;
         }
     }
 
     &:hover {
         color: $menu-icon-color-hover;
-        padding-left: px2rem(30px);
+        padding-left: 30px;
     }
 }
 
 .slide-content-item {
-  
+    .slide-content-line {
+        margin-top: 20px;
+    }
+
+    .slide-content-button {
+        color: $white;
+        border: 0;
+        border-radius: 8px;
+        background-color: $button-color;
+        padding: 8px 24px;
+        margin-right: 15px;
+
+        &:hover {
+            background-color: $button-color-hover;
+        }
+    }
 }
 /* 右滑菜单 结束 */
