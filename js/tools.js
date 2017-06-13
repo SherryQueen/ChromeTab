@@ -1,15 +1,31 @@
-(function (window) {
+(function(window) {
     const _ = {}
 
+    /**
+     * DOM元素加载完毕后调用
+     * @param  {Function} fn [调用的方法]
+     * @return {[type]}      [description]
+     */
     _.ready = fn => {
         if (document.readyState !== 'loading') fn()
         else document.addEventListener('DOMContentLoaded', fn)
     }
 
+    /**
+     * 判断字符串是否为空
+     * @param  {String}  str [字符串]
+     * @return {Boolean}     [description]
+     */
     _.isBlank = str => {
         return !(str && str.trim().length !== 0)
     }
 
+    /**
+     * 格式化时间
+     * @param  {Date}   date                 [日期类]
+     * @param  {String} [formStr='yyyy-HH-dd hh:mm:ss']    [格式化后的格式]
+     * @return {[type]}                      [格式化后的结果]
+     */
     _.formDate = (date, formStr = 'yyyy-HH-dd hh:mm:ss') => {
         if (!(date instanceof Date)) return
         const res = formStr,
@@ -29,6 +45,45 @@
             .replace('ss', second > 9 ? second : `0${second}`)
     }
 
+    /**
+     * 节流实现
+     * @param  {Function} fn   [执行的函数]
+     * @param  {Number}   wait [等待执行时间]
+     * @param  {Number}   must [必须执行时间]
+     * @return {[type]}        [description]
+     */
+    _.throttle = function(fn, wait, must) {
+        let last, timer
+        return function() {
+            // 获取上下文
+            let ctx = this,
+                args = arguments
+
+            const now = +new Date()
+
+            if (last && now - last < must) {
+                clearTimeout(timer)
+                timer = setTimeout(() => {
+                    last = now
+                    // 执行方法
+                    fn.apply(this, args)
+
+                    // 避免内存泄漏
+                    timer = null
+                    ctx = args = null
+                }, wait)
+            } else {
+                last = now
+                // 执行方法, 并清除定时器
+                fn.apply(this, args)
+                clearTimeout(timer)
+                // 避免内存泄漏
+                timer = null
+                ctx = args = null
+            }
+        }
+    }
+
     /** Ajax About start **/
     const http = {}
     http.ajax = _ajax
@@ -43,7 +98,7 @@
     }
 
     function _ajax(params, data = {}) {
-        return new Promise(function (resolve, reject) {
+        return new Promise(function(resolve, reject) {
             let url = params.url
             const type = params.type ? params.type.toUpperCase() : 'GET',
                 timeout = params.timeout ? params.timeout : 10000
@@ -54,7 +109,7 @@
                     url = _addURLParam(url, key, data[key])
                 }
             } else if (type === 'POST') {
-
+                // TODO POST请求封装实现
             }
 
             _xhr.open(type, url, true)
@@ -92,19 +147,37 @@
     }
     const eventSet = new WeakSet()
 
+    /**
+     * 获取事件唯一值
+     * @param  {String} [eventName=''] [事件名]
+     * @return {String}                [uniqID]
+     */
     function getUniqID(eventName = '') {
         const res = `${eventName}${Math.random().toString(36).substr(2,10)}`
         return eventSet.has(res) ? getUniqID(eventName) : res
     }
 
+    /**
+     * 绑定事件
+     * @param  {String} old [旧的绑定事件]
+     * @param  {String} nd  [新的绑定事件]
+     * @return {String}     [新的绑定事件结果]
+     */
     function evalDataSet(old, nd) {
         return old ? `${old}|${nd}` : nd
     }
-    /** 委托实现 */
-    NodeList.prototype.on = function (event, selector, fn) {
+
+    /**
+     * 委托实现
+     * @param  {String}   event    [事件名]
+     * @param  {String}   selector [选择器]
+     * @param  {Function} fn       [执行的方法]
+     * @return {[type]}            [description]
+     */
+    NodeList.prototype.on = function(event, selector, fn) {
         const eid = getUniqID(event),
             self = Array.from(this)
-        if (typeof (selector) === 'function') {
+        if (typeof(selector) === 'function') {
             fn = selector
             selector = ''
         }

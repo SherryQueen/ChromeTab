@@ -2,8 +2,8 @@ let bgData = ""
 
 /**
  * 配置存储
- * @param  {[type]} key   [关键字]
- * @param  {[type]} value [对应的值]
+ * @param  {String} key   [关键字]
+ * @param  {String} value [对应的值]
  * @return {[type]}       [description]
  */
 function saveConfig(key, value) {
@@ -12,11 +12,20 @@ function saveConfig(key, value) {
 
 /**
  * 获取配置
- * @param  {[type]} key [description]
- * @return {[type]}     [description]
+ * @param  {String} key [description]
+ * @return {String}     [description]
  */
 function getConfig(key) {
     return localStorage.getItem(key)
+}
+
+/**
+ * 删除配置
+ * @param  {String} key [description]
+ * @return {String}     [description]
+ */
+function removeConfig(key){
+    return localStorage.removeItem(key)
 }
 
 /**
@@ -71,6 +80,31 @@ function showWeather() {
             console.err(err)
         }
     )
+}
+
+/**
+ * 初始化 Radio
+ * @param  {String} name  [radio name]
+ * @param  {String} value [radio value]
+ * @return {[type]}       [description]
+ */
+function initRadio(name, value) {
+    const arr = $(`input[name=${name}]`)
+    for (let i = 0, len = arr.length; i < len; i++) {
+        if (arr[i].value === value) return arr[i].setAttribute('checked', 'checked')
+    }
+}
+
+/**
+ * 获得Radio选中的值
+ * @param  {String} name [radio name]
+ * @return {String}      [选中的值]
+ */
+function getRadio(name) {
+    const arr = $(`input[name=${name}]`)
+    for (let i = 0, len = arr.length; i < len; i++) {
+        if (arr[i].checked) return arr[i].value
+    }
 }
 
 /**
@@ -167,8 +201,8 @@ function fetchBing(cb) {
 
 /**
  * 应用背景设置
- * @param  {[type]} title [左下标题]
- * @param  {[type]} bgSrc [背景图片]
+ * @param  {String} title [左下标题]
+ * @param  {String} bgSrc [背景图片]
  * @return {[type]}       [description]
  */
 function applyBackground(title, bgSrc) {
@@ -222,8 +256,85 @@ function initBackgroud() {
 }
 
 /**
+ * 根据关键字搜索
+ * @param  {String} key 搜索关键字
+ * @return {[type]}     [description]
+ */
+function search(key) {
+    switch (searchEngine) {
+        case 'Google':
+            window.location = `https://www.google.com/search?q=${key}`
+            break;
+        case 'Bing':
+            window.location = `http://bing.com/search?q=${key}`
+            break;
+        case 'BaiDu':
+            window.location = `https://www.baidu.com/s?wd=${key}`
+            break;
+        case 'GitHub':
+            window.location = `https://github.com/search?q=${key}`
+            break;
+    }
+}
+
+function showSearch(show) {
+    const $layout = $('.search-div')[0]
+    const $input = $('.search-input')[0]
+    $input.setAttribute('placeholder', `Search ${searchEngine}`)
+    if (show) $layout.classList.add('show')
+    else $layout.classList.remove('show')
+}
+
+/**
+ * 初始化搜索设置相关
+ * @return {[type]} [description]
+ */
+function initSearch() {
+    /** 搜索框回车事件 **/
+    const $input = $('.search-input')
+    $input.on('keydown', e => {
+        if (e.which === 13) search($input[0].value)
+    })
+
+    /** 搜索图标点击事件 **/
+    $('.search-button').on('click', e => {
+        search($input[0].value)
+    })
+
+    /** 获取搜索设置 */
+    let open = getConfig('searchOpen')
+    let engine = getConfig('searchEngine')
+    if (!open) open = '1'
+    if (!engine) engine = 'Google'
+    searchEngine = engine
+
+    initRadio('SearchOpen', open)
+    initRadio('SearchEngine', engine)
+    showSearch(true)
+
+    $('#searchApply').on('click', e => {
+        const open = getRadio('SearchOpen')
+        const engine = getRadio('SearchEngine')
+        searchEngine = engine
+        showSearch(open === '1')
+
+        saveConfig('searchOpen', open)
+        saveConfig('searchEngine', engine)
+    })
+    $('#searchReset').on('click', e => {
+        initRadio('SearchOpen', '1')
+        initRadio('SearchEngine', 'Google')
+        searchEngine = 'Google'
+        showSearch(true)
+
+        removeConfig('searchOpen')
+        removeConfig('searchEngine')
+    })
+}
+
+/**
  * 显示侧边栏
- * @param  {[type]} type [0 关闭 1 显示菜单 2 全部展开]
+ * @param  {Number} type [0 关闭 1 显示菜单 2 全部展开]
  * @return {[type]}      [description]
  */
 function showSlide(type) {
@@ -262,7 +373,8 @@ function showSlide(type) {
 }
 
 let timer = null,
-    slideState = 0
+    slideState = 0,
+    searchEngine = ''
 /**
  * 初始化加载
  */
@@ -275,4 +387,5 @@ _.ready(() => {
     initEvents()
     initOften()
     initBackgroud()
+    initSearch()
 })

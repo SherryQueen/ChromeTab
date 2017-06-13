@@ -10,7 +10,7 @@
 <body>
     <div class="background"></div>
 
-    <div class="search-div show">
+    <div class="search-div">
         <h1>56の_(:з」∠)_</h1>
         <h2>世界辣么大，总要想办法去看看。❀(๑╯◡╰๑)❀<</h2>
         <div class="search-layout">
@@ -72,7 +72,42 @@
             </div>
             <div class="slide-content-item">
                 <h1>Search Setting</h1>
-                <div class="slide-content-line"></div>
+                <div class="slide-content-line radio-box">
+                    <span class="slide-content-title">Show Search</span>
+                    <label class="radio-label">
+                        <input type="radio" value="1" name="SearchOpen">
+                        <span class="radio"></span>Show
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" value="0" name="SearchOpen">
+                        <span class="radio"></span>Hide
+                    </label>
+                </div>
+                <div class="slide-content-line">
+                    <span class="slide-content-title">Show Search</span>
+                </div>
+                <div class="slide-content-line radio-box">
+                    <label class="radio-label">
+                        <input type="radio" value="Google" name="SearchEngine">
+                        <span class="radio"></span>Google
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" value="Bing" name="SearchEngine">
+                        <span class="radio"></span>Bing
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" value="GitHub" name="SearchEngine">
+                        <span class="radio"></span>GitHub
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" value="BaiDu" name="SearchEngine">
+                        <span class="radio"></span>BaiDu
+                    </label>
+                </div>
+                <div class="slide-content-line">
+                    <div id="searchApply" class="slide-content-button">Apply</div>
+                    <div id="searchReset" class="slide-content-button">Reset</div>
+                </div>
             </div>
             <div class="slide-content-item">
                 <h1>Background Setting</h1>
