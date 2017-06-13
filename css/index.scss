@@ -14,6 +14,11 @@
     font-weight: normal;
     font-style: normal;
 }
+/** 部分全局样式 开始 */
+
+.hidden {
+    display: none;
+}
 
 .icon {
     $icon-size: 24px;
@@ -31,7 +36,7 @@
 $slide-menu-width: 240px;
 $slide-content-width: 320px;
 $slide-animation-time: 0.8s;
-
+/** 部分全局样式 结束 */
 body,
 html {
     height: 100%;
@@ -47,8 +52,8 @@ body {
     font-size: 16px;
     font-family: 'hytiaotiaotijregular', 'Arial', 'Microsoft YaHei UI', sans-serif;
 }
-$bg-padding: 10px; /* 背景开始 */
-
+$bg-padding: 10px;
+/* 背景开始 */
 .background {
     background-size: cover;
     bottom: 0;
@@ -66,7 +71,6 @@ $bg-padding: 10px; /* 背景开始 */
 }
 /* 背景结束 */
 /* 搜索开始 */
-
 .search-div {
     @extend %fade-style;
     color: #fff;
@@ -111,7 +115,6 @@ $bg-padding: 10px; /* 背景开始 */
 }
 /* 搜索结束 */
 /* 时间, 天气 开始 */
-
 .top-right-layout {
     position: absolute;
     height: 50px;
@@ -153,7 +156,6 @@ $bg-padding: 10px; /* 背景开始 */
 }
 /* 时间, 天气 结束 */
 /* 背景图片说明 开始 */
-
 .bottom-left-layout {
     font-size: 12px;
     bottom: $bg-padding;
@@ -164,7 +166,6 @@ $bg-padding: 10px; /* 背景开始 */
 }
 /* 背景图片说明 结束 */
 /* 常访问页面 开始 */
-
 .bottom-layout {
     $width: 420px;
     position: absolute;
@@ -200,7 +201,6 @@ $bg-padding: 10px; /* 背景开始 */
 }
 /* 常访问页面 结束 */
 /* 菜单 开始 */
-
 .bottom-right-layout {
     font-size: 16px;
     bottom: $bg-padding;
@@ -272,7 +272,6 @@ $bg-padding: 10px; /* 背景开始 */
 }
 /* 菜单 结束 */
 /* 右滑菜单 开始 */
-
 .right-layout {
     $top: 150px;
     position: absolute;
@@ -347,9 +346,16 @@ $bg-padding: 10px; /* 背景开始 */
         margin-top: 20px;
     }
 
+    .slide-input {
+        padding: 6px 8px;
+        border-radius: 6px;
+        border: 1px solid $border-color;
+    }
+
     .slide-content-button {
         color: $white;
         border: 0;
+        display: inline-block;
         border-radius: 8px;
         background-color: $button-color;
         padding: 8px 24px;

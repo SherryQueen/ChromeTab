@@ -78,17 +78,17 @@
                 <h1>Background Setting</h1>
                 <div class="slide-content-line">
                     <span class="slide-content-title">Picture Upload</span>
-                    <label for="fileUpload">
-                        <input id="fileUpload" type="file" name="file-upload" accept="image/*">
-                    </label>
+                    <label for="fileUpload" class="slide-content-button">Upload</label>
+                    <input id="fileUpload" class="hidden" type="file" name="file-upload" accept="image/*">
                 </div>
                 <div class="slide-content-line">
                     <span class="slide-content-title">Picture Introduce</span>
-                    <lable for="backgroundText"><input id="backgroundText" type="text" name="background-text"></lable>
+                    <lable for="backgroundText"></lable>
+                    <input id="backgroundText" class="slide-input" type="text" name="background-text">
                 </div>
                 <div class="slide-content-line">
-                    <button id="backgroundApply" class="slide-content-button">应用</button>
-                    <button id="backgroundReset" class="slide-content-button">重置</button>
+                    <div id="backgroundApply" class="slide-content-button">Apply</div>
+                    <div id="backgroundReset" class="slide-content-button">Reset</div>
                 </div>
             </div>
             <div class="slide-content-item">
