@@ -24,7 +24,7 @@ function getConfig(key) {
  * @param  {String} key [description]
  * @return {String}     [description]
  */
-function removeConfig(key){
+function removeConfig(key) {
     return localStorage.removeItem(key)
 }
 
@@ -148,8 +148,22 @@ function initEvents() {
     })
 }
 
+/**
+ * 是否显示最近访问
+ * @param  {Boolean} flag 是否显示
+ * @return {[type]}       [description]
+ */
+function showOftenVisited(flag) {
+    const $bottomLayout = $('.bottom-layout')[0]
+    if (flag) $bottomLayout.classList.add('show')
+    else $bottomLayout.classList.remove('show')
+}
+
 /** 初始化经常访问页面 */
 function initOften() {
+    let oftenVisited = getConfig('oftenVisited')
+    if (!oftenVisited) oftenVisited = '1'
+    initRadio('OftenVisitedOpen', oftenVisited)
     chrome.topSites.get(res => {
         res = res.splice(0, 5)
         const list = $('.bottom-layout')[0]
@@ -174,6 +188,22 @@ function initOften() {
             li.append(a)
             list.appendChild(li)
         })
+    })
+
+    showOftenVisited(oftenVisited === '1')
+
+    // 基础设置
+    $('#basicApply').on('click', () => {
+        const value = getRadio('OftenVisitedOpen')
+        showOftenVisited(value === '1')
+        saveConfig('oftenVisited', value)
+    })
+
+    // 基础设置重置
+    $('#basicReset').on('click', () => {
+        initRadio('oftenVisited', '1')
+        showOftenVisited(true)
+        saveConfig('oftenVisited', '1')
     })
 }
 

@@ -166,8 +166,10 @@ $bg-padding: 10px;
 }
 /* 背景图片说明 结束 */
 /* 常访问页面 开始 */
+
 .bottom-layout {
     $width: 420px;
+    @extend %fade-style;
     position: absolute;
     width: $width;
     bottom: $bg-padding;
