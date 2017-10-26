@@ -26,14 +26,14 @@ module.exports = {
 			},
 			{
 				test: /\.css$/,
-				// 配置css的抽取器、加载器。'-loader'可以省去
+				// 配置css的抽取器、加载器。
 				loader: ExtractTextPlugin.extract('style-loader', 'css-loader'),
 			},
 			{
 				test: /(\.sass|\.scss)$/,
 				// 配置sass的抽取器 加载器
 				// 从右向左提取 !可表示右边输出做左边输入
-				loader: ExtractTextPlugin.extract('css!sass-loader'),
+				loader: ExtractTextPlugin.extract('css-loader!sass-loader'),
 			},
 			{
 				test: /\.pug$/,
@@ -71,7 +71,7 @@ module.exports = {
 		port: 8080, // 端口号
 		historyApiFallback: true, // 不跳转
 		inline: true, // 实时刷新
-		hot: true, // 开启热更新
+		// hot: true, // 开启热更新
 		// proxy: {}, // 做路径映射
 	},
 }

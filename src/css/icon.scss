@@ -1,0 +1,21 @@
+$icon-size: 24px;
+// 引入图标字体
+@font-face {
+	font-family: 'icon';
+	src: url('/fonts/fontello.woff2') format('woff2'), url('/fonts/fontello.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+// 图标通用样式
+.icon {
+	font-size: 24px;
+	cursor: pointer;
+	display: inline-block;
+	width: $icon-size;
+	text-align: center;
+	font-style: normal;
+	font-family: 'icon';
+	-moz-osx-font-smoothing: graycale; // 对字体进行抗锯齿渲染
+	-webkit-font-smoothing: antialiased; // 对字体进行抗锯齿渲染
+}
