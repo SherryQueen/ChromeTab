@@ -1,0 +1,48 @@
+/*
+ * 搜索相关
+ * @Author: 56 
+ * @Date: 2017-10-27 11:35:18 
+ * @Last Modified by: 56
+ * @Last Modified time: 2017-10-27 11:35:45
+ */
+
+@import '../color.scss';
+.search-div {
+  // @extend %fade-style;
+  color: #fff;
+  left: 7%;
+  opacity: 0;
+  position: absolute;
+  top: 17%;
+  h1 {
+    font-size: 60px;
+  }
+  h2 {
+    font-size: 18px;
+  }
+  .search-layout {
+    margin-top: 40px;
+    position: relative;
+    $button-size: 30px;
+    input {
+      font-size: 30px;
+      border: 0;
+      color: $search-color;
+      opacity: 0.8;
+      padding: 12px 20px+$button-size 12px 20px;
+      width: 5rem;
+    }
+    .search-button {
+      top: 0;
+      margin: 12px;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      height: $button-size;
+      width: $button-size;
+    }
+  }
+}
+
+
+/* 搜索结束 */

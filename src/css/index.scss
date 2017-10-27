@@ -1,29 +1,38 @@
 // 引入公用组件,样式清0
 @import './common';
 @include clearStyle;
+// 引入字体图标
+@import './icon';
 // 引入字体
 @font-face {
 	font-family: 'hytiaotiaotijregular';
-	src: url('/fonts/5.0-webfont.woff2') format('woff2'), url('/fonts/5.0-webfont.woff') format('woff');
+	src: url('/static/fonts/5.0-webfont.woff2') format('woff2'), url('/static/fonts/5.0-webfont.woff') format('woff');
 	font-weight: normal;
 	font-style: normal;
 }
 
-// 引入字体样式
-@import './icon';
 // 全局样式
-body,
-html {
+body {
 	height: 100%;
 	width: 100%;
 	overflow: hidden;
-}
-
-html {
-	font-size: 100px;
-}
-
-body {
 	font-size: 16px;
 	font-family: 'hytiaotiaotijregular', 'Arial', 'Microsoft YaHei UI', sans-serif;
 }
+
+// 背景相关属性
+.background {
+	background-size: cover;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	top: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+// 图标相关
+@import './icon.scss';
+// 搜索区域相关
+@import './widget/search';

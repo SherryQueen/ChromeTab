@@ -1,10 +1,9 @@
 $icon-size: 24px;
 // 引入图标字体
 @font-face {
-	font-family: 'icon';
-	src: url('/fonts/fontello.woff2') format('woff2'), url('/fonts/fontello.woff') format('woff');
-	font-weight: normal;
-	font-style: normal;
+	font-family: 'iconfont';
+	src: url('/static/fonts/iconfont.ttf') format('truetype');
+	/* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
 }
 
 // 图标通用样式
