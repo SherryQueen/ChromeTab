@@ -3,7 +3,7 @@
  * @Author: 56 
  * @Date: 2017-10-27 10:42:11 
  * @Last Modified by: 56
- * @Last Modified time: 2017-10-27 10:55:55
+ * @Last Modified time: 2017-10-27 11:51:37
  */
 const webpack = require('webpack')
 const merge = require('webpack-merge')
@@ -25,7 +25,7 @@ module.exports = merge(baseWebpackConfig, {
 				test: /(\.sass|\.scss)$/,
 				// 配置sass的抽取器 加载器
 				// 从右向左提取 !可表示右边输出做左边输入
-				loader: 'css-loader!sass-loader',
+				loader: 'style-loader!css-loader!sass-loader',
 			},
 		],
 	},

@@ -1,8 +1,16 @@
+const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
 	entry: __dirname + '/src/js/main.js', // 唯一入口文件
+
+	// 输出目录
+	output: {
+		path: path.join(__dirname, '/dist'), //打包后的文件存放的地方
+		filename: 'static/js/[name].[hash].js', //打包后输出文件的文件名
+		publicPath: '/', // 输出的公共资源文件
+	},
 
 	// 相关的loader
 	module: {

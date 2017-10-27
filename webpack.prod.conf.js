@@ -3,9 +3,8 @@
  * @Author: 56 
  * @Date: 2017-10-27 10:44:17 
  * @Last Modified by: 56
- * @Last Modified time: 2017-10-27 11:06:39
+ * @Last Modified time: 2017-10-27 11:45:09
  */
-const path = require('path')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
 const baseWebpackConfig = require('./webpack.base.conf')
@@ -16,11 +15,6 @@ const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 module.exports = merge(baseWebpackConfig, {
 	// 输出配置
 	devtool: 'source-map', // 生成单独 sourcemap
-	output: {
-		path: path.join(__dirname, '/dist'), //打包后的文件存放的地方
-		filename: 'static/js/[name].[hash].js', //打包后输出文件的文件名
-		publicPath: '/', // 输出的公共资源文件
-	},
 
 	// 使用的 loader 加载器
 	module: {
