@@ -3,11 +3,27 @@
 @include clearStyle;
 // 引入字体
 @font-face {
-  font-family: 'hytiaotiaotijregular';
-  src: url('/fonts/5.0-webfont.woff2') format('woff2'), url('/fonts/5.0-webfont.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
+	font-family: 'hytiaotiaotijregular';
+	src: url('/fonts/5.0-webfont.woff2') format('woff2'), url('/fonts/5.0-webfont.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
 }
 
 // 引入字体样式
 @import './icon';
+// 全局样式
+body,
+html {
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+}
+
+html {
+	font-size: 100px;
+}
+
+body {
+	font-size: 16px;
+	font-family: 'hytiaotiaotijregular', 'Arial', 'Microsoft YaHei UI', sans-serif;
+}
