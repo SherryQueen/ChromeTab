@@ -3,14 +3,17 @@
 	"version": "1.0.0",
 	"description": "自定义的chrome扩展",
 	"scripts": {
-		"dev": "webpack-dev-server --devtool eval-source-map --progress --colors",
-		"build": "webpack"
+		"dev": "webpack-dev-server --config ./webpack.dev.conf.js --progress --colors",
+		"build": "webpack --config ./webpack.prod.conf.js --progress --colors"
 	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://SherryQueen@bitbucket.org/SherryQueen/chromeweb.git"
 	},
-	"keywords": ["chrome", "newTab"],
+	"keywords": [
+		"chrome",
+		"newTab"
+	],
 	"author": "56",
 	"license": "ISC",
 	"homepage": "https://bitbucket.org/SherryQueen/chromeweb#readme",
@@ -24,12 +27,14 @@
 		"file-loader": "^1.1.5",
 		"html-webpack-plugin": "^2.30.1",
 		"node-sass": "^4.5.3",
+		"optimize-css-assets-webpack-plugin": "^3.2.0",
 		"pug": "^2.0.0-rc.4",
 		"pug-loader": "^2.3.0",
 		"sass-loader": "^6.0.6",
 		"style-loader": "^0.19.0",
 		"url-loader": "^0.6.2",
 		"webpack": "^3.8.1",
-		"webpack-dev-server": "^2.9.3"
+		"webpack-dev-server": "^2.9.3",
+		"webpack-merge": "^4.1.0"
 	}
 }
