@@ -1,20 +1,30 @@
-$icon-size: 24px;
 // 引入图标字体
 @font-face {
-	font-family: 'iconfont';
-	src: url('/static/fonts/iconfont.ttf') format('truetype');
-	/* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  font-family: 'iconfont';
+  src: url('/static/fonts/iconfont.ttf') format('truetype');
+  /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
 }
 
-// 图标通用样式
 .icon {
-	font-size: 24px;
-	cursor: pointer;
-	display: inline-block;
-	width: $icon-size;
-	text-align: center;
-	font-style: normal;
-	font-family: 'icon';
-	-moz-osx-font-smoothing: graycale; // 对字体进行抗锯齿渲染
-	-webkit-font-smoothing: antialiased; // 对字体进行抗锯齿渲染
+  font-family: 'iconfont' !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-person:before {
+  content: '\e608';
+}
+
+.icon-search:before {
+  content: '\e613';
+}
+
+.icon-picture:before {
+  content: '\e61b';
+}
+
+.icon-round:before {
+  content: '\e6b2';
 }
