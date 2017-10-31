@@ -3,9 +3,9 @@
  * @Author: 56 
  * @Date: 2017-10-26 17:25:10 
  * @Last Modified by: 56
- * @Last Modified time: 2017-10-27 11:13:22
+ * @Last Modified time: 2017-10-31 15:32:05
  */
-const http = require('./api')
+import http from './api'
 
 const _ = {}
 _.http = http
@@ -84,6 +84,13 @@ _.throttle = (fn, wait, must) => {
 			// 若大于必须执行间隔
 			cb()
 	}
+}
+
+/**
+ * 获取范围内的随机整数
+ */
+_.random = (min, max) => {
+	return min + Math.floor(Math.random() * (max + 1 - min))
 }
 
 export default _

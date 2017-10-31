@@ -1,2 +1,5 @@
-export const $ = require('./node')
-export const _ = require('./tools')
+import $ from './node'
+import _ from './tools'
+import * as Storage from './storage'
+
+export { $, _, Storage }
