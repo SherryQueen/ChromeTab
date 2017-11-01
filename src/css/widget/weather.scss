@@ -1,0 +1,40 @@
+/*
+ * 天气,城市地址
+ * @Author: 56 
+ * @Date: 2017-11-01 19:44:24 
+ * @Last Modified by: 56
+ * @Last Modified time: 2017-11-01 20:00:58
+ */
+
+@import '../constants';
+.info-layout {
+	position: absolute;
+	height: 50px;
+	right: $bg-padding;
+	color: #fff;
+	.clock {
+		font-size: 60px;
+	}
+	.weather {
+		font-size: 22px;
+		float: right;
+		margin-top: 10px;
+		margin-left: 10px;
+		.weather-name {
+			float: right;
+			margin-right: 10px;
+		}
+		.weather-state {
+			float: right;
+		}
+		.city {
+			font-size: 24px;
+		}
+	}
+	&.open {
+		right: $slide-menu-width + $bg-padding;
+	}
+	&.full-open {
+		right: $slide-menu-width + $slide-content-width + $bg-padding;
+	}
+}

@@ -3,6 +3,7 @@ import '../css/index.scss'
 
 require('./widget/slide')()
 require('./widget/background')()
+require('./widget/weather')()
 
 /**
  * 设置 单选的值

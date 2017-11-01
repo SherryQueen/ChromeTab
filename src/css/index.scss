@@ -5,47 +5,49 @@
 @import './icon';
 // 引入字体
 @font-face {
-  font-family: 'hytiaotiaotijregular';
-  src: url('/static/fonts/5.0-webfont.woff2') format('woff2'), url('/static/fonts/5.0-webfont.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
+	font-family: 'hytiaotiaotijregular';
+	src: url('/static/fonts/5.0-webfont.woff2') format('woff2'), url('/static/fonts/5.0-webfont.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
 }
 
 // 全局样式
 body {
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-  font-size: 16px;
-  font-family: 'hytiaotiaotijregular', 'Arial', 'Microsoft YaHei UI', sans-serif;
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+	font-size: 16px;
+	font-family: 'hytiaotiaotijregular', 'Arial', 'Microsoft YaHei UI', sans-serif;
 }
 
 // 背景相关属性
 .background {
-  background-size: cover;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  top: 0;
-  overflow: hidden;
-  position: absolute;
-  z-index: -1;
-  .background-title {
-    color: #fff;
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
-    font-size: 12px;
-    width: 300px;
-  }
+	background-size: cover;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	top: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+	.background-title {
+		color: #fff;
+		position: absolute;
+		bottom: 10px;
+		left: 10px;
+		font-size: 12px;
+		width: 300px;
+	}
 }
 
 .hidden {
-  display: none;
+	display: none;
 }
 
 // 图标相关
 @import './icon.scss';
+// 天气相关
+@import './widget/weather';
 // 搜索区域相关
 @import './widget/search';
 // 侧边菜单栏

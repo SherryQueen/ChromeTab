@@ -3,7 +3,7 @@
  * @Author: 56 
  * @Date: 2017-10-26 17:25:10 
  * @Last Modified by: 56
- * @Last Modified time: 2017-10-31 15:32:05
+ * @Last Modified time: 2017-11-01 19:58:22
  */
 import http from './api'
 
@@ -40,7 +40,7 @@ _.formDate = (date, formStr = 'yyyy-HH-dd hh:mm:ss') => {
 		minutes = date.getMinutes(),
 		second = date.getSeconds()
 
-	return res
+	return str
 		.replace('yyyy', date.getFullYear())
 		.replace('yy', year > 9 ? year : `0${year}`)
 		.replace('MM', month > 9 ? month : `0${month}`)

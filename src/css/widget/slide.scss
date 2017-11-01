@@ -3,18 +3,13 @@
  * @Author: 56 
  * @Date: 2017-10-31 15:54:06 
  * @Last Modified by: 56
- * @Last Modified time: 2017-11-01 16:08:07
+ * @Last Modified time: 2017-11-01 19:46:34
  */
 
+@import '../constants';
 @import '../color';
 @import './radio';
 @import './linkStyle';
-$top: 150px;
-$height: 30px;
-$slide-menu-width: 240px;
-$slide-content-width: 320px;
-$slide-animation-time: 0.8s;
-$bg-padding: 10px;
 // 菜单布局
 .nav-menu-layout {
   font-size: 16px;
