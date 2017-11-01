@@ -3,7 +3,7 @@
  * @Author: 56 
  * @Date: 2017-10-27 11:09:04 
  * @Last Modified by: 56
- * @Last Modified time: 2017-10-31 15:31:56
+ * @Last Modified time: 2017-11-01 20:15:07
  */
 function _addURLParam(url, name, value) {
 	url += url.indexOf('?') == -1 ? '?' : '&'
