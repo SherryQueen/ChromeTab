@@ -38,6 +38,10 @@ div.slide-layout
           input(type="radio" value="0" name="OftenVisitedOpen")
           span.radio
           | Hide
+      div.slide-content-line
+        span.slide-content-title Tab Introduction
+        label
+          input#tabText.slide-input(type="text" name="tabText")
       //- 按钮区
       div.slide-content-line
         div#basicApply.slide-content-button Apply
@@ -81,6 +85,21 @@ div.slide-layout
 
     div.slide-content-item
       h1 Background Setting
+      div.slide-content-line
+        span.slide-content-title Background From  
+      div.slide-content-line.radio-box
+        label.radio-label
+          input(type="radio" value="Custom" name="BackgroundFrom")
+          span.radio
+          | Custom
+        label.radio-label
+          input(type="radio" value="Bing" name="BackgroundFrom")
+          span.radio
+          | Bing
+        label.radio-label
+          input(type="radio" value="Local" name="BackgroundFrom")
+          span.radio
+          | Local
       div.slide-content-line
         span.slide-content-title Picture Upload
         label.slide-content-button
