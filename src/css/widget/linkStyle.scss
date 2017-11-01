@@ -1,0 +1,16 @@
+@mixin link-style($font-color, $normal-background, $hover-background, $visited-background) {
+  background-color: $normal-background;
+  display: inline-block;
+  color: $font-color;
+  padding: 8px 12px;
+  text-decoration: none;
+  cursor: pointer;
+  &:visited {
+    background-color: $visited-background;
+    color: $font-color;
+  }
+  &:hover {
+    background-color: $hover-background;
+    color: $font-color;
+  }
+}

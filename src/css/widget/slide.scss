@@ -1,0 +1,167 @@
+/*
+ * 侧边栏菜单样式
+ * @Author: 56 
+ * @Date: 2017-10-31 15:54:06 
+ * @Last Modified by: 56
+ * @Last Modified time: 2017-11-01 16:08:07
+ */
+
+@import '../color';
+@import './radio';
+@import './linkStyle';
+$top: 150px;
+$height: 30px;
+$slide-menu-width: 240px;
+$slide-content-width: 320px;
+$slide-animation-time: 0.8s;
+$bg-padding: 10px;
+// 菜单布局
+.nav-menu-layout {
+  font-size: 16px;
+  bottom: $bg-padding;
+  right: 0;
+  position: absolute;
+  transition: right $slide-animation-time ease;
+  li {
+    float: right;
+    list-style: none;
+    a {
+      @include link-style($white, $transparent, $active, $transparent);
+    }
+  }
+  .nav-menu {
+    $nav-line-width: 20px;
+    .nav-menu-line {
+      transition: 0.3s all;
+      background-color: $white;
+      display: block;
+      line-height: 2px;
+      height: 2px;
+      width: $nav-line-width;
+    }
+    .bottom,
+    .top {
+      margin: 3px 0;
+    }
+    .middle {
+      margin: 0;
+    }
+    &:hover>.bottom,
+    &:hover>.top {
+      margin: 1px 0;
+    }
+    &:hover>.middle {
+      margin: 5px 0;
+    }
+    &.collapse>.top {
+      transform: rotate(-45deg);
+      width: $nav-line-width / 3 * 2;
+    }
+    &.collapse>.middle {
+      width: 0;
+    }
+    &.collapse>.bottom {
+      transform: rotate(45deg);
+      width: $nav-line-width / 3 * 2;
+    }
+  }
+  &.open {
+    right: $slide-menu-width + $bg-padding;
+  }
+  &.full-open {
+    right: $slide-menu-width + $slide-content-width + $bg-padding;
+  }
+}
+
+// 侧边栏布局
+.slide-layout {
+  position: absolute;
+  background: $white;
+  bottom: 0;
+  top: 0;
+  right: -$slide-menu-width - $slide-content-width;
+  width: $slide-menu-width+$slide-content-width;
+  transition: right $slide-animation-time ease;
+  &.open {
+    right: -$slide-content-width;
+  }
+  &.full-open {
+    right: 0;
+  }
+  .slide-menu {
+    width: $slide-menu-width;
+    height: 100%;
+    padding-top: $top;
+    border-right: solid 1px $divider-line;
+    box-sizing: border-box;
+    float: left;
+  }
+  .slide-content {
+    padding-top: $top;
+    box-sizing: border-box;
+    height: 100%;
+    float: right;
+    padding-left: 10px;
+    width: $slide-content-width;
+  }
+}
+
+// 侧标栏菜单按钮样式
+.slide-menu-item {
+  border-bottom: 1px solid $divider-line;
+  color: $menu-icon-color;
+  height: $height;
+  line-height: $height;
+  padding: 10px 20px;
+  transition: padding-left 0.5s ease;
+  &:last-child {
+    border-bottom: 0;
+  }
+  .icon {
+    margin-right: 10px;
+    transition: all 0.3s ease;
+  }
+  span {
+    position: absolute;
+    &::after {
+      height: 5px;
+    }
+  }
+  &:hover {
+    color: $menu-icon-color-hover;
+    padding-left: 30px;
+  }
+}
+
+// 侧边栏具体设置样式
+.slide-content-item {
+  .slide-content-title {
+    margin-right: 10px;
+  }
+  .slide-content-line {
+    margin-top: 20px;
+  }
+  .slide-input {
+    padding: 6px 8px;
+    border-radius: 6px;
+    border: 1px solid $border-color;
+    width: 150px;
+  }
+  .slide-content-button {
+    color: $white;
+    border: 0;
+    display: inline-block;
+    border-radius: 8px;
+    background-color: $button-color;
+    padding: 8px 24px;
+    margin-right: 16px;
+    &:hover {
+      background-color: $button-color-hover;
+    }
+  }
+}
+
+// 单选样式
+.radio-box {
+  @include radio-style;
+}

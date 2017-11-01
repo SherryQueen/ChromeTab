@@ -1,3 +1,10 @@
+/*
+ * 背景设置相关
+ * @Author: 56 
+ * @Date: 2017-10-31 15:54:31 
+ * @Last Modified by:   56 
+ * @Last Modified time: 2017-10-31 15:54:31 
+ */
 import { _, $, Storage } from '../common'
 
 const BG_TITLE_KEY = 'backgroundTitle',

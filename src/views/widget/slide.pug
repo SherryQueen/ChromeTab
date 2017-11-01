@@ -1,15 +1,105 @@
+nav.nav-menu-layout
+  li
+    a.nav-menu(href="#")
+      span.nav-menu-line.top
+      span.nav-menu-line.middle
+      span.nav-menu-line.bottom
+  li
+    a(href="#" data-url="chrome://apps/") App
+  li
+    a(href="#" data-url="chrome://bookmarks/") Bookmakers
+  li
+    a(href="#" data-url="chrome://history/") History
+
 div.slide-layout
   div.slide-menu
-    div.slide-menu-item
+    div.slide-menu-item(data-index="0")
       i.icon.icon-round
       span Basic
-    div.slide-menu-item
+    div.slide-menu-item(data-index="1")
       i.icon.icon-search
       span Search
-    div.slide-menu-item
+    div.slide-menu-item(data-index="2")
       i.icon.icon-picture
       span Background
-    div.slide-menu-item
+    div.slide-menu-item(data-index="3")
       i.icon.icon-person
       span About
   div.slide-content
+    div.slide-content-item
+      h1 Basic Setting
+      div.slide-content-line.radio-box
+        span.slide-content-title Show Often-Visited
+        label.radio-label
+          input(type="radio" value="1" name="OftenVisitedOpen")
+          span.radio
+          | Show
+        label.radio-label
+          input(type="radio" value="0" name="OftenVisitedOpen")
+          span.radio
+          | Hide
+      //- 按钮区
+      div.slide-content-line
+        div#basicApply.slide-content-button Apply
+        div#basicReset.slide-content-button Reset
+    
+    div.slide-content-item
+      h1 Search Setting
+      div.slide-content-line.radio-box
+        span.slide-content-title Show Search
+        label.radio-label
+          input(type="radio" value="1" name="SearchOpen")
+          span.radio
+          | Show
+        label.radio-label
+          input(type="radio" value="0" name="SearchOpen")
+          span.radio
+          | Hide
+      div.slide-content-line
+        span.slide-content-title Show Engine      
+      div.slide-content-line.radio-box
+        label.radio-label
+          input(type="radio" value="Google" name="SearchEngine")
+          span.radio
+          | Google
+        label.radio-label
+          input(type="radio" value="Bing" name="SearchEngine")
+          span.radio
+          | Bing
+        label.radio-label
+          input(type="radio" value="GitHub" name="SearchEngine")
+          span.radio
+          | GitHub
+        label.radio-label
+          input(type="radio" value="BaiDu" name="SearchEngine")
+          span.radio
+          | BaiDu
+      //- 按钮区
+      div.slide-content-line
+        div#searchApply.slide-content-button Apply
+        div#searchReset.slide-content-button Reset
+
+    div.slide-content-item
+      h1 Background Setting
+      div.slide-content-line
+        span.slide-content-title Picture Upload
+        label.slide-content-button
+          input#fileUpload.hidden(type="file" name="file-upload" accept="image/*")
+          | Upload
+      div.slide-content-line
+        span.slide-content-title Picture Introduce
+        label
+          input#backgroundText.slide-input(type="text" name="background-text")
+      //- 按钮区
+      div.slide-content-line
+        div#backgroundApply.slide-content-button Apply
+        div#backgroundReset.slide-content-button Reset
+
+    div.slide-content-item
+      h1 About
+      div.slide-content-line
+        span.slide-content-title Author: 56
+      div.slide-content-line
+        span.slide-content-title Email: SherryQueenLove@gmail.com
+      div.slide-content-line
+        span.slide-content-title Version: 1.0.5

@@ -1,0 +1,37 @@
+/*
+ * 单选样式组件
+ * @Author: 56 
+ * @Date: 2017-10-31 15:53:27 
+ * @Last Modified by: 56
+ * @Last Modified time: 2017-10-31 16:00:49
+ */
+
+@mixin radio-style($out-size:16px, $in-size:12px, $bg:$white, $checked-bg: $border-color, $border:rgba(0, 0, 0, 0.15)) {
+	input {
+		display: none;
+		&:checked + .radio::after {
+			background-color: $checked-bg;
+			border-radius: 100%;
+			content: ' ';
+			display: inline-block;
+			height: $in-size;
+			width: $in-size;
+			margin: ($out-size - $in-size)/2;
+		}
+	}
+	.radio-label {
+		margin-right: 8px;
+	}
+	.radio {
+		background-color: $bg;
+		border: 1px solid $border;
+		border-radius: 100%;
+		display: inline-block;
+		height: $out-size;
+		width: $out-size;
+		margin-right: 10px;
+		margin-top: -1px;
+		line-height: 1;
+		vertical-align: middle;
+	}
+}

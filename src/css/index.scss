@@ -40,7 +40,13 @@ body {
   }
 }
 
+.hidden {
+  display: none;
+}
+
 // 图标相关
 @import './icon.scss';
 // 搜索区域相关
 @import './widget/search';
+// 侧边菜单栏
+@import './widget/slide';
