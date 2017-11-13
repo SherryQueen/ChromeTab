@@ -103,12 +103,17 @@ div.slide-layout
       div.slide-content-line
         span.slide-content-title Picture Upload
         label.slide-content-button
-          input#fileUpload.hidden(type="file" name="file-upload" accept="image/*")
+          input#fileUpload.hidden(type="file" name="fileUpload" accept="image/*")
           | Upload
       div.slide-content-line
         span.slide-content-title Picture Introduce
         label
-          input#backgroundText.slide-input(type="text" name="background-text")
+          input#backgroundText.slide-input(type="text" name="backgroundText")
+          | 秒
+      div.slide-content-line
+        span.slide-content-title Change Time
+        label
+          input#bgInterval.slide-input(type="text" name="bgInterval")
       //- 按钮区
       div.slide-content-line
         div#backgroundApply.slide-content-button Apply

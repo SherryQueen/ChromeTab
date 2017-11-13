@@ -3,7 +3,7 @@
  * @Author: 56 
  * @Date: 2017-11-01 20:05:32 
  * @Last Modified by: 56
- * @Last Modified time: 2017-11-01 20:15:24
+ * @Last Modified time: 2017-11-01 20:47:46
  */
 import { _, $, Storage } from '../common'
 const url = 'https://sslapi.hitokoto.cn/'

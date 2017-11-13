@@ -1,8 +1,6 @@
 import { _, $, Storage } from '../common'
-const COLLAPSE = 'collapse',
-	OPEN = 'open',
-	FULL_OPEN = 'full-open'
-let slideState = COLLAPSE
+import Constant from '../constant'
+let slideState = Constant.COLLAPSE
 
 // 模块渲染
 module.exports = function() {
@@ -20,13 +18,13 @@ function initEvents() {
 		if (_.isBlank(url)) {
 			const nav = $('.nav-menu')[0]
 			// 若为展开状态，则收缩侧边
-			if (slideState !== COLLAPSE) {
-				nav.classList.remove(COLLAPSE)
-				showSlide(COLLAPSE)
+			if (slideState !== Constant.COLLAPSE) {
+				nav.classList.remove(Constant.COLLAPSE)
+				showSlide(Constant.COLLAPSE)
 			} else {
 				// 若收缩 则展开为打开状态
-				nav.classList.add(COLLAPSE)
-				showSlide(OPEN)
+				nav.classList.add(Constant.COLLAPSE)
+				showSlide(Constant.OPEN)
 			}
 		} else
 			// 如果是url
@@ -44,7 +42,7 @@ function initEvents() {
 	// 菜单栏点击事件
 	$('.slide-menu-item').on('click', function(e) {
 		const index = parseInt(this.getAttribute('data-index'))
-		showSlide(FULL_OPEN)
+		showSlide(Constant.FULL_OPEN)
 
 		const items = $('.slide-content-item')
 		for (let i = 0, len = items.length; i < len; i++) {
@@ -64,46 +62,46 @@ function showSlide(type) {
 		navMenu = $('.nav-menu-layout')[0],
 		infoLayout = $('.info-layout')[0]
 	switch (slideState) {
-		case COLLAPSE:
+		case Constant.COLLAPSE:
 			if (slide) {
-				slide.classList.remove(OPEN)
-				slide.classList.remove(FULL_OPEN)
+				slide.classList.remove(Constant.OPEN)
+				slide.classList.remove(Constant.FULL_OPEN)
 			}
 			if (navMenu) {
-				navMenu.classList.remove(OPEN)
-				navMenu.classList.remove(FULL_OPEN)
+				navMenu.classList.remove(Constant.OPEN)
+				navMenu.classList.remove(Constant.FULL_OPEN)
 			}
 			if (infoLayout) {
-				infoLayout.classList.remove(OPEN)
-				infoLayout.classList.remove(FULL_OPEN)
+				infoLayout.classList.remove(Constant.OPEN)
+				infoLayout.classList.remove(Constant.FULL_OPEN)
 			}
 			break
-		case OPEN:
+		case Constant.OPEN:
 			if (slide) {
-				slide.classList.add(OPEN)
-				slide.classList.remove(FULL_OPEN)
+				slide.classList.add(Constant.OPEN)
+				slide.classList.remove(Constant.FULL_OPEN)
 			}
 			if (navMenu) {
-				navMenu.classList.add(OPEN)
-				navMenu.classList.remove(FULL_OPEN)
+				navMenu.classList.add(Constant.OPEN)
+				navMenu.classList.remove(Constant.FULL_OPEN)
 			}
 			if (infoLayout) {
-				infoLayout.classList.add(OPEN)
-				infoLayout.classList.remove(FULL_OPEN)
+				infoLayout.classList.add(Constant.OPEN)
+				infoLayout.classList.remove(Constant.FULL_OPEN)
 			}
 			break
-		case FULL_OPEN:
+		case Constant.FULL_OPEN:
 			if (slide) {
-				slide.classList.remove(OPEN)
-				slide.classList.add(FULL_OPEN)
+				slide.classList.remove(Constant.OPEN)
+				slide.classList.add(Constant.FULL_OPEN)
 			}
 			if (navMenu) {
-				navMenu.classList.remove(OPEN)
-				navMenu.classList.add(FULL_OPEN)
+				navMenu.classList.remove(Constant.OPEN)
+				navMenu.classList.add(Constant.FULL_OPEN)
 			}
 			if (infoLayout) {
-				infoLayout.classList.remove(OPEN)
-				infoLayout.classList.add(FULL_OPEN)
+				infoLayout.classList.remove(Constant.OPEN)
+				infoLayout.classList.add(Constant.FULL_OPEN)
 			}
 			break
 	}

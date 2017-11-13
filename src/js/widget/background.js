@@ -2,23 +2,32 @@
  * 背景设置相关
  * @Author: 56 
  * @Date: 2017-10-31 15:54:31 
- * @Last Modified by:   56 
- * @Last Modified time: 2017-10-31 15:54:31 
+ * @Last Modified by: 56
+ * @Last Modified time: 2017-11-01 21:00:47
  */
-import { _, $, Storage } from '../common'
+import { _, $ } from '../common'
+import Constant from '../constant'
 
-const BG_TITLE_KEY = 'backgroundTitle',
-	BG_DATA_KEY = 'backgroundData',
-	locals = ['时间过得越久，人心的距离就越远。不过，偶尔也有例外。', '不能从外表去判断的，就像美丽的蔷薇也有刺一样。不过，也许里面也会有真的好人。', '就像汽水的自动贩卖机一样，放钱进去就能解渴，不放钱的话就什么也没有。金钱是买不到人心的。', '花是纤弱而短命的，即使维护起来，它们依然因喜恋阳光而枯萎，一旦暴风雨袭来，再金贵的栅栏也保护不了它们。', '对于一个死去的人，会以最美好的回忆永远留在心里，就像某人一样。', '就算什么都可以真实反映出来的镜子，也反映不出真正的你。', '再见是分离的时候带来针刺一样痛苦的悲哀的言语。']
-let bgTitle, bgData
+const locals = ['时间过得越久，人心的距离就越远。不过，偶尔也有例外。', '不能从外表去判断的，就像美丽的蔷薇也有刺一样。不过，也许里面也会有真的好人。', '就像汽水的自动贩卖机一样，放钱进去就能解渴，不放钱的话就什么也没有。金钱是买不到人心的。', '花是纤弱而短命的，即使维护起来，它们依然因喜恋阳光而枯萎，一旦暴风雨袭来，再金贵的栅栏也保护不了它们。', '对于一个死去的人，会以最美好的回忆永远留在心里，就像某人一样。', '就算什么都可以真实反映出来的镜子，也反映不出真正的你。', '再见是分离的时候带来针刺一样痛苦的悲哀的言语。']
+let bgTitle, bgData, from
+let timer
 
-module.exports = function() {
-	bgTitle = Storage.getConfig(BG_TITLE_KEY)
-	bgData = Storage.getConfig(BG_DATA_KEY)
+/**
+ * 设置图片展示
+ * @param {String} bgFrom   图片来源
+ * @param {Object} opt      其他一些参数
+ */
+module.exports = (bgFrom, opt) => {
+	from = bgFrom
 
-	// 若设置了自定义图片
-	if (bgTitle || bgData) return applyBackground(bgTitle, bgData)
-	else getImage()
+	if (bgFrom === Constant.BG_FROM.CUSTOM) applyBackground(opt.bgTitle, opt.bgData)
+	else {
+		getImage()
+		if (opt && opt.interval) {
+			clearInterval(timer)
+			timer = setInterval(getImage, opt.interval * 1000) // 开启定时获取图片
+		}
+	}
 }
 
 /**
@@ -26,9 +35,7 @@ module.exports = function() {
  */
 async function getImage() {
 	try {
-		// const resArr = await getImageFromBing()
-		const resArr = await getImageFromLocal()
-
+		const resArr = await (from === Constant.BG_FROM.BING ? getImageFromBing() : getImageFromLocal())
 		bgTitle = resArr[0]
 		bgData = resArr[1]
 	} catch (err) {

@@ -2,5 +2,13 @@ $top: 150px;
 $height: 30px;
 $slide-menu-width: 240px;
 $slide-content-width: 320px;
-$slide-animation-time: 0.8s;
 $bg-padding: 10px;
+$anmiation: all 0.8s ease;
+// 样式渐变
+%fade-style {
+  opacity: 0;
+  transition: opacity 0.5s;
+  &.show {
+    opacity: 0.8;
+  }
+}
