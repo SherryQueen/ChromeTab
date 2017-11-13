@@ -3,7 +3,7 @@
  * @Author: 56 
  * @Date: 2017-10-31 15:54:31 
  * @Last Modified by: 56
- * @Last Modified time: 2017-11-01 21:00:47
+ * @Last Modified time: 2017-11-13 23:08:44
  */
 import { _, $ } from '../common'
 import Constant from '../constant'
@@ -17,10 +17,10 @@ let timer
  * @param {String} bgFrom   图片来源
  * @param {Object} opt      其他一些参数
  */
-module.exports = (bgFrom, opt) => {
+export const init = (bgFrom, opt) => {
 	from = bgFrom
 
-	if (bgFrom === Constant.BG_FROM.CUSTOM) applyBackground(opt.bgTitle, opt.bgData)
+	if (bgFrom === Constant.BG_FROM.CUSTOM) applyBackground(opt.title, opt.bgData)
 	else {
 		getImage()
 		if (opt && opt.interval) {
@@ -28,6 +28,12 @@ module.exports = (bgFrom, opt) => {
 			timer = setInterval(getImage, opt.interval * 1000) // 开启定时获取图片
 		}
 	}
+
+	// 选择时切换显示内容
+	$('input[name=bgFrom]').on('change', evt => {
+		let val = evt.target.value
+		console.log(val)
+	})
 }
 
 /**
@@ -82,6 +88,6 @@ async function getImageFromBing() {
  * @param  {String} bgSrc 背景图片
  */
 function applyBackground(title, bgSrc) {
-	if (title) $('.background-title')[0].innerHTML = title
-	if (bgSrc) $('.background')[0].style.backgroundImage = `url(${bgSrc})`
+	if (title) $('.background-title').html(title)
+	if (bgSrc) $('.background').css('backgroundImage', `url(${bgSrc})`)
 }

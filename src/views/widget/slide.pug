@@ -89,31 +89,31 @@ div.slide-layout
         span.slide-content-title Background From  
       div.slide-content-line.radio-box
         label.radio-label
-          input(type="radio" value="Custom" name="BackgroundFrom")
+          input(type="radio" value="Custom" name="bgFrom")
           span.radio
           | Custom
         label.radio-label
-          input(type="radio" value="Bing" name="BackgroundFrom")
+          input(type="radio" value="Bing" name="bgFrom")
           span.radio
           | Bing
         label.radio-label
-          input(type="radio" value="Local" name="BackgroundFrom")
+          input(type="radio" value="Local" name="bgFrom")
           span.radio
           | Local
       div.slide-content-line
         span.slide-content-title Picture Upload
         label.slide-content-button
-          input#fileUpload.hidden(type="file" name="fileUpload" accept="image/*")
+          input#bgUpload.hidden(type="file" name="bgUpload" accept="image/*")
           | Upload
       div.slide-content-line
         span.slide-content-title Picture Introduce
         label
-          input#backgroundText.slide-input(type="text" name="backgroundText")
-          | 秒
+          input.slide-input(type="text" name="bgTitle")
       div.slide-content-line
         span.slide-content-title Change Time
         label
-          input#bgInterval.slide-input(type="text" name="bgInterval")
+          input.slide-input(type="text" name="bgInterval")
+          | 秒          
       //- 按钮区
       div.slide-content-line
         div#backgroundApply.slide-content-button Apply

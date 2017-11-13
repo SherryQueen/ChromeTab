@@ -3,12 +3,56 @@
  * @Author: 56 
  * @Date: 2017-10-27 11:11:13 
  * @Last Modified by: 56
- * @Last Modified time: 2017-10-27 11:13:05
+ * @Last Modified time: 2017-11-13 23:17:50
  */
 
-const $ = selector => {
-	return document.querySelectorAll(selector)
+// 初始化选择器 和 相关方法
+function $(selector) {
+	return new Doc(selector)
 }
+
+class Doc {
+	// 构造函数
+	constructor(selector) {
+		this.docs = document.querySelectorAll(selector)
+	}
+
+	// 获取对应的dom元素对象
+	dom(index) {
+		return index !== undefined ? this.docs[index] : this.docs
+	}
+
+	// 获取或设置值
+	val(val) {
+		if (val !== undefined) this.docs.forEach(doc => (doc.val = val))
+		else val = this.docs[0].value
+		return val
+	}
+
+	// 设置对应的html代码
+	html(html) {
+		this.docs.forEach(doc => (doc.innerHTML = html))
+	}
+
+	// 设置css属性
+	css(style, val) {
+		this.docs.forEach(doc => (doc.style[style] = val))
+	}
+
+	// 绑定on方法 实现委托
+	on(evt, selector, fn) {
+		this.docs.on(evt, selector, fn)
+	}
+
+	addClass(cls) {
+		this.docs.forEach(doc => doc.classList.add(cls))
+	}
+
+	removeClass(cls) {
+		this.docs.forEach(doc => doc.classList.remove(cls))
+	}
+}
+
 const eventSet = new WeakSet()
 
 /**
@@ -49,7 +93,7 @@ NodeList.prototype.on = function(event, selector, fn) {
 	}
 	if (selector) {
 		eventSet[eid] = e => {
-			const els = $(selector),
+			const els = $(selector).docs,
 				obj = e.target
 			let match
 			for (let i = 0, len = els.length; i < len; i++) {

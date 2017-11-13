@@ -3,12 +3,25 @@ import '../css/index.scss'
 import { _, $, Storage } from './common'
 import Constant from './constant'
 
-const bgInit = require('./widget/background')
+import { init as bgInit } from './widget/background'
+import { init as slideInit } from './widget/slide'
+
+const defaultBg = {
+	from: Constant.BG_FROM.LOCAL,
+	title: '',
+	interval: 0,
+}
+
+// 页面初始化
 ;(function init() {
+	// 初始化侧边栏
+	slideInit()
+
 	// 读取配置 并进行初始化
 	// 初始化背景配置
-	const bg = Storage.getConfig(Constant.BG_KEY) || { form: Constant.BG_FROM.BING }
+	const bg = Storage.getConfig(Constant.BG_KEY) || defaultBg
 	bgInit(bg.from, bg)
+	initBg(bg) // 初始化背景设置的侧边栏目
 })()
 
 /**
@@ -16,35 +29,51 @@ const bgInit = require('./widget/background')
  * @param {Object} opt 对象 
  */
 function initBg(opt) {
-	setRadio('BackgroundFrom', opt.from)
-	$('#backgroundText')[0].innerTEXT = opt.bgTitle || ''
-	$('#backgroundText')[0].innerTEXT = opt.bgTitle 
+	setValue('bgFrom', opt.from)
+	setValue('title', opt.title)
+	setValue('bgInterval', opt.interval)
 
-	$('#backgroundApply').on('click', ()=>{
+	// 应用背景修改
+	$('#backgroundApply').on('click', () => {
+		const opt = {}
+		opt.from = getValue('bgFrom')
+		opt.from = getValue('bgTitle')
+		opt.interval = getValue('bgInterval')
 
+		bgInit(opt.from, opt)
+		Storage.saveConfig(Constant.BG_KEY, opt)
 	})
 
-	$('#backgroundReset').on('click', ()=>{
-
+	// 重置背景属性
+	$('#backgroundReset').on('click', () => {
+		setValue('bgFrom', defaultBg.from)
+		setValue('title', defaultBg.title)
+		setValue('bgInterval', defaultBg.interval)
+		bgInit(defaultBg.from, defaultBg)
+		Storage.saveConfig(Constant.BG_KEY, opt)
 	})
 }
 
 /**
- * 设置 单选的值
- * @param {String} key radio的name
- * @param {Number} val radio的值
+ * 设置input的值
+ * @param {String} key input的name
+ * @param {Number} val input的值
  */
-function setRadio(key, val) {
-	const arr = $(`input[name=${name}]`)
+function setValue(key, val) {
 	val += ''
-	for (let i = 0, len = arr.length; i < len; i++) if (arr[i].value === value) return arr[i].setAttribute('checked', 'checked')
+	const arr = $(`input[name=${key}]`)
+	if (arr.length === 1) return (arr[0].value = val)
+	else {
+		for (let i = 0, len = arr.length; i < len; i++) if (arr[i].value === val) return arr[i].setAttribute('checked', 'checked')
+	}
 }
 
 /**
- * 获得单选的值
+ * 获得input的值
  * @param {String} key radio的name
  */
-function getRadio(key) {
-	const arr = $(`input[name=${name}]`)
-	for (let i = 0, len = arr.length; i < len; i++) if (arr[i].checked) return arr[i].value
+function getValue(key) {
+	const arr = $(`input[name=${key}]`)
+	if (arr.length === 1) return arr[0].value
+	else for (let i = 0, len = arr.length; i < len; i++) if (arr[i].checked) return arr[i].value
 }

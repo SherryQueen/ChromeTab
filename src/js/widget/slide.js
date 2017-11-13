@@ -3,7 +3,7 @@ import Constant from '../constant'
 let slideState = Constant.COLLAPSE
 
 // 模块渲染
-module.exports = function() {
+export function init() {
 	initEvents()
 }
 
@@ -16,14 +16,14 @@ function initEvents() {
 		const url = e.target.getAttribute('data-url')
 		// 如果是菜单
 		if (_.isBlank(url)) {
-			const nav = $('.nav-menu')[0]
+			const $nav = $('.nav-menu')
 			// 若为展开状态，则收缩侧边
 			if (slideState !== Constant.COLLAPSE) {
-				nav.classList.remove(Constant.COLLAPSE)
+				$nav.removeClass(Constant.COLLAPSE)
 				showSlide(Constant.COLLAPSE)
 			} else {
 				// 若收缩 则展开为打开状态
-				nav.classList.add(Constant.COLLAPSE)
+				$nav.addClass(Constant.COLLAPSE)
 				showSlide(Constant.OPEN)
 			}
 		} else
@@ -44,7 +44,7 @@ function initEvents() {
 		const index = parseInt(this.getAttribute('data-index'))
 		showSlide(Constant.FULL_OPEN)
 
-		const items = $('.slide-content-item')
+		const items = $('.slide-content-item').dom()
 		for (let i = 0, len = items.length; i < len; i++) {
 			items[i].style.display = i === index ? 'block' : 'none'
 		}
@@ -58,50 +58,50 @@ function initEvents() {
 function showSlide(type) {
 	if (slideState === type) return
 	slideState = type
-	const slide = $('.slide-layout')[0],
-		navMenu = $('.nav-menu-layout')[0],
-		infoLayout = $('.info-layout')[0]
+	const slide = $('.slide-layout'),
+		navMenu = $('.nav-menu-layout'),
+		infoLayout = $('.info-layout')
 	switch (slideState) {
 		case Constant.COLLAPSE:
 			if (slide) {
-				slide.classList.remove(Constant.OPEN)
-				slide.classList.remove(Constant.FULL_OPEN)
+				slide.removeClass(Constant.OPEN)
+				slide.removeClass(Constant.FULL_OPEN)
 			}
 			if (navMenu) {
-				navMenu.classList.remove(Constant.OPEN)
-				navMenu.classList.remove(Constant.FULL_OPEN)
+				navMenu.removeClass(Constant.OPEN)
+				navMenu.removeClass(Constant.FULL_OPEN)
 			}
 			if (infoLayout) {
-				infoLayout.classList.remove(Constant.OPEN)
-				infoLayout.classList.remove(Constant.FULL_OPEN)
+				infoLayout.removeClass(Constant.OPEN)
+				infoLayout.removeClass(Constant.FULL_OPEN)
 			}
 			break
 		case Constant.OPEN:
 			if (slide) {
-				slide.classList.add(Constant.OPEN)
-				slide.classList.remove(Constant.FULL_OPEN)
+				slide.addClass(Constant.OPEN)
+				slide.removeClass(Constant.FULL_OPEN)
 			}
 			if (navMenu) {
-				navMenu.classList.add(Constant.OPEN)
-				navMenu.classList.remove(Constant.FULL_OPEN)
+				navMenu.addClass(Constant.OPEN)
+				navMenu.removeClass(Constant.FULL_OPEN)
 			}
 			if (infoLayout) {
-				infoLayout.classList.add(Constant.OPEN)
-				infoLayout.classList.remove(Constant.FULL_OPEN)
+				infoLayout.addClass(Constant.OPEN)
+				infoLayout.removeClass(Constant.FULL_OPEN)
 			}
 			break
 		case Constant.FULL_OPEN:
 			if (slide) {
-				slide.classList.remove(Constant.OPEN)
-				slide.classList.add(Constant.FULL_OPEN)
+				slide.removeClass(Constant.OPEN)
+				slide.addClass(Constant.FULL_OPEN)
 			}
 			if (navMenu) {
-				navMenu.classList.remove(Constant.OPEN)
-				navMenu.classList.add(Constant.FULL_OPEN)
+				navMenu.removeClass(Constant.OPEN)
+				navMenu.addClass(Constant.FULL_OPEN)
 			}
 			if (infoLayout) {
-				infoLayout.classList.remove(Constant.OPEN)
-				infoLayout.classList.add(Constant.FULL_OPEN)
+				infoLayout.removeClass(Constant.OPEN)
+				infoLayout.addClass(Constant.FULL_OPEN)
 			}
 			break
 	}
