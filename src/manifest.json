@@ -1,0 +1,22 @@
+{
+	"manifest_version": 2,
+	"name": "56のTab",
+	"version": "2.0",
+	"description": "One chrome extension for myself",
+	"icons": {
+		"16": "static/img/icon16.png",
+		"48": "static/img/icon48.png",
+		"128": "static/img/icon128.png"
+	},
+	"browser_action": {
+		"default_icon": {
+			"19": "static/img/icon19.png",
+			"38": "static/img/icon38.png"
+		}
+	},
+	"chrome_url_overrides": {
+		"newtab": "index.html"
+	},
+	"permissions": ["<all_urls>", "storage", "topSites"],
+	"web_accessible_resources": ["images/*.png"]
+}
