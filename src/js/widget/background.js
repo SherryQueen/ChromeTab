@@ -3,7 +3,7 @@
  * @Author: 56 
  * @Date: 2017-10-31 15:54:31 
  * @Last Modified by: 56
- * @Last Modified time: 2018-01-21 16:40:39
+ * @Last Modified time: 2018-01-21 17:13:48
  */
 import { _, $, Storage } from '../common'
 import Constant from '../constant'
@@ -59,7 +59,7 @@ export const init = opt => {
 		$bgTitle.val(defaultBg.title)
 		$bgInterval.val(defaultBg.interval)
 
-		showCustom(defaultBg.bgFrom)
+		showCustom(defaultBg.from)
 		bgInit(defaultBg.from, defaultBg)
 		Storage.saveConfig(Constant.BG_KEY, opt)
 	})
@@ -97,7 +97,7 @@ function bgInit(bgFrom, opt) {
 	if (bgFrom === Constant.BG_FROM.CUSTOM) applyBackground(opt.title, opt.bgData)
 	else {
 		getImage()
-		if (opt && opt.interval) timer = setInterval(getImage, opt.interval * 3600 * 1000) // 开启定时获取图片
+		if ((bgFrom === Constant.BG_FROM.LOCAL) & opt && opt.interval) timer = setInterval(getImage, +opt.interval * 3600 * 1000) // 开启定时获取图片
 	}
 }
 
