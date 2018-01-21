@@ -100,20 +100,20 @@ div.slide-layout
           input(type="radio" value="Local" name="bgFrom")
           span.radio
           | Local
-      div.slide-content-line
+      div.slide-content-line.bg-upload
         span.slide-content-title Picture Upload
         label.slide-content-button
           input#bgUpload.hidden(type="file" name="bgUpload" accept="image/*")
           | Upload
-      div.slide-content-line
+      div.slide-content-line.bg-introduce
         span.slide-content-title Picture Introduce
         label
-          input.slide-input(type="text" name="bgTitle")
-      div.slide-content-line
+          input.slide-input(type="text" name="bgTitle" placeholder="未填写自定义标题")
+      div.slide-content-line.bg-interval
         span.slide-content-title Change Time
         label
-          input.slide-input(type="text" name="bgInterval")
-          | 秒          
+          input.slide-input(type="number" name="bgInterval" placeholder="0(0为默认不切换)")
+          | 时
       //- 按钮区
       div.slide-content-line
         div#backgroundApply.slide-content-button Apply

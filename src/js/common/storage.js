@@ -4,6 +4,7 @@
  * @param {String} value 存储值
  */
 export function saveConfig(key, value) {
+	value = JSON.stringify(value)
 	return localStorage.setItem(key, value)
 }
 
@@ -12,7 +13,12 @@ export function saveConfig(key, value) {
  * @param {String} key 键值
  */
 export function getConfig(key) {
-	return localStorage.getItem(key)
+	let value = localStorage.getItem(key)
+	try {
+		return JSON.parse(value)
+	} catch (error) {
+		return value
+	}
 }
 
 /**

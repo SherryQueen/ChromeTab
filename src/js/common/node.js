@@ -3,7 +3,7 @@
  * @Author: 56 
  * @Date: 2017-10-27 11:11:13 
  * @Last Modified by: 56
- * @Last Modified time: 2017-11-13 23:17:50
+ * @Last Modified time: 2018-01-21 16:22:05
  */
 
 // 初始化选择器 和 相关方法
@@ -22,9 +22,14 @@ class Doc {
 		return index !== undefined ? this.docs[index] : this.docs
 	}
 
+	// 获取当前得到dom元素数量
+	len() {
+		return this.docs.length || 0
+	}
+
 	// 获取或设置值
 	val(val) {
-		if (val !== undefined) this.docs.forEach(doc => (doc.val = val))
+		if (val !== undefined) this.docs.forEach(doc => (doc.value = val))
 		else val = this.docs[0].value
 		return val
 	}
@@ -44,6 +49,22 @@ class Doc {
 		this.docs.on(evt, selector, fn)
 	}
 
+	// 根据值设置checked的值
+	checked(val) {
+		let doc
+		if (val) {
+			for (let i = 0, len = this.docs.length; i < len; i++) {
+				doc = this.docs[i]
+				if (doc.value === val) return doc.setAttribute('checked', 'checked')
+			}
+		} else {
+			for (let i = 0, len = this.docs.length; i < len; i++) {
+				doc = this.docs[i]
+				if (doc.checked) return doc.value
+			}
+		}
+	}
+
 	addClass(cls) {
 		this.docs.forEach(doc => doc.classList.add(cls))
 	}
@@ -56,10 +77,10 @@ class Doc {
 const eventSet = new WeakSet()
 
 /**
-   * 获取事件唯一值
-   * @param  {String} [eventName=''] [事件名]
-   * @return {String}                [uniqID]
-   */
+ * 获取事件唯一值
+ * @param  {String} [eventName=''] [事件名]
+ * @return {String}                [uniqID]
+ */
 function getUniqID(eventName = '') {
 	const res = `${eventName}${Math.random()
 		.toString(36)
@@ -68,22 +89,22 @@ function getUniqID(eventName = '') {
 }
 
 /**
-   * 绑定事件
-   * @param  {String} old [旧的绑定事件]
-   * @param  {String} nd  [新的绑定事件]
-   * @return {String}     [新的绑定事件结果]
-   */
+ * 绑定事件
+ * @param  {String} old [旧的绑定事件]
+ * @param  {String} nd  [新的绑定事件]
+ * @return {String}     [新的绑定事件结果]
+ */
 function evalDataSet(old, nd) {
 	return old ? `${old}|${nd}` : nd
 }
 
 /**
-   * 委托实现
-   * @param  {String}   event    [事件名]
-   * @param  {String}   selector [选择器]
-   * @param  {Function} fn       [执行的方法]
-   * @return {[type]}            [description]
-   */
+ * 委托实现
+ * @param  {String}   event    [事件名]
+ * @param  {String}   selector [选择器]
+ * @param  {Function} fn       [执行的方法]
+ * @return {[type]}            [description]
+ */
 NodeList.prototype.on = function(event, selector, fn) {
 	const eid = getUniqID(event),
 		self = Array.from(this)
