@@ -46,6 +46,10 @@ module.exports = {
 				from: __dirname + '/src/manifest.json',
 				to: __dirname + '/dist',
 			},
+			{
+				from: __dirname + '/static',
+				to: __dirname + '/dist/static',
+			},
 		]),
 	],
 }
