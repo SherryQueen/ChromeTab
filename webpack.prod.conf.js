@@ -3,7 +3,7 @@
  * @Author: 56 
  * @Date: 2017-10-27 10:44:17 
  * @Last Modified by: 56
- * @Last Modified time: 2017-10-27 11:45:09
+ * @Last Modified time: 2017-12-20 22:31:37
  */
 const webpack = require('webpack')
 const merge = require('webpack-merge')
@@ -39,7 +39,7 @@ module.exports = merge(baseWebpackConfig, {
 		new webpack.optimize.OccurrenceOrderPlugin(), // 为组件分配ID
 		new ExtractTextPlugin('static/css/[name].[contenthash].css'), // 给每个css 单独生成对应的路径
 		new OptimizeCSSPlugin({ cssProcessorOptions: { safe: true } }), // css 代码压缩
-		new webpack.optimize.UglifyJsPlugin({ extract: true }), // js代码压缩
+		// new webpack.optimize.UglifyJsPlugin({ extract: true }), // js代码压缩
 		new HtmlWebpackPlugin({
 			filename: 'index.html', // 输出的html名
 			template: 'index.pug', // 指定的html模板

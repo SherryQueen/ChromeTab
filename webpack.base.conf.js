@@ -1,6 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
 	entry: __dirname + '/src/js/main.js', // 唯一入口文件
@@ -36,8 +36,16 @@ module.exports = {
 			{
 				test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
 				// 字体加载 处理文件
-				loader: 'file-loader?name=fonts/[name].[ext]',
+				loader: 'file-loader',
 			},
 		],
 	},
+	plugins: [
+		new CopyWebpackPlugin([
+			{
+				from: __dirname + '/src/manifest.json',
+				to: __dirname + '/dist',
+			},
+		]),
+	],
 }
