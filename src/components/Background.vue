@@ -14,7 +14,10 @@ export default {
           img.onload = () => image.value = img.src
           if (!image.value) throw new Error(`Unable to get wallpaper from bing`)
         })
-        .catch(err => console.error('Background:', err))
+        .catch(err => {
+          console.error('Background:', err)
+          image.value = './assets/deafult.webp'
+        })
     })
 
     return { image }
@@ -26,6 +29,26 @@ export default {
 
 <template>
   <div class="absolute bg-gray-300 w-screen h-screen" style="z-index: -1;">
-    <img v-if="!!image" :src="image" class="w-full h-full object-cover" />
+    <div class="cover w-full h-full">
+      <img v-if="!!image" :src="image" class="w-full h-full object-cover" />
+    </div>
   </div>
 </template>
+
+<style>
+.cover::before {
+  top: 0;
+}
+.cover::after {
+  bottom: 0;
+}
+.cover::before,
+.cover::after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 0;
+  left: 0;
+  box-shadow: 0 0 30px 15px #fff;
+}
+</style>
