@@ -6,6 +6,14 @@
   "chrome_url_overrides": {
     "newtab": "index.html"
   },
+  "icons": {
+    "16": "assets/icon16.png",
+    "24": "assets/icon24.png",
+    "36": "assets/icon36.png",
+    "48": "assets/icon48.png",
+    "64": "assets/icon64.png",
+    "128": "assets/icon128.png"
+  },
   "permissions": ["tabs", "topSites"],
   "host_permissions": ["https://cn.bing.com/", "https://v1.hitokoto.cn/"],
   "content_security_policy": {

@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc --noEmit && vite build && cp ./manifest.json ./dist/manifest.json",
+    "build": "vue-tsc --noEmit && vite build && cp ./manifest.json ./dist/manifest.json && mkdir -p ./dist/assets && cp -r ./src/assets/* ./dist/assets",
     "serve": "vite preview"
   },
   "dependencies": {
