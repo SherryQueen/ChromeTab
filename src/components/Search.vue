@@ -5,7 +5,7 @@ export default {
     const value = ref('')
     const motto = ref('我最喜欢的时光,就是和你在一起')
     const onSearch = () => {
-      window.location.href = `https://cn.bing.com/search?q=${value}`
+      window.location.href = `https://cn.bing.com/search?q=${value.value}`
     }
 
     onMounted(() => {
