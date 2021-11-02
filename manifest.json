@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "56のTab",
+  "version": "1.0",
+  "description": "Build an extension for myself",
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  },
+  "permissions": ["tabs", "topSites"],
+  "host_permissions": ["https://cn.bing.com/", "https://v1.hitokoto.cn/"],
+  "content_security_policy": {
+    "extension_pages": "default-src 'self'; connect-src * data: blob: filesystem:;img-src * data:;"
+  }
+}
