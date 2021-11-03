@@ -9,7 +9,7 @@ export default {
     }
 
     onMounted(() => {
-      fetch('https://v1.hitokoto.cn/', { mode: 'no-cors', credentials: 'omit' })
+      fetch('https://v1.hitokoto.cn/?c=d&c=h&c=i&c=k', { mode: 'no-cors', credentials: 'omit' })
         .then(res => res.json())
         .then(res => {
           const arr = []
