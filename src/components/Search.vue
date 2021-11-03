@@ -9,6 +9,7 @@ export default {
     }
 
     onMounted(() => {
+      // 一言主站: https://hitokoto.cn/
       fetch('https://v1.hitokoto.cn/?c=d&c=h&c=i&c=k', { mode: 'no-cors', credentials: 'omit' })
         .then(res => res.json())
         .then(res => {
