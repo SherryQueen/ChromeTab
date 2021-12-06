@@ -1,6 +1,7 @@
 <script setup lang="ts">
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
+import Time from './components/Time.vue'
 import Search from './components/Search.vue'
 import Background from './components/Background.vue'
 
@@ -13,6 +14,7 @@ document.addEventListener('visibilitychange', () => {
 <template>
   <Background />
   <Search />
+  <Time />
 </template>
 
 <style>
