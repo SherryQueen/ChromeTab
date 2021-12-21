@@ -16,6 +16,10 @@
   },
   "permissions": ["tabs", "topSites"],
   "host_permissions": ["https://cn.bing.com/", "https://v1.hitokoto.cn/"],
+  "content_scripts": [
+    { "matches": ["https://juejin.cn/post/*"], "js": ["content-scripts/juejin.js"] },
+    { "matches": ["https://*.zhihu.com/*"], "js": ["content-scripts/zhihu.js"] }
+  ],
   "content_security_policy": {
     "extension_pages": "default-src 'self'; connect-src * data: blob: filesystem:;img-src * data:;"
   }
