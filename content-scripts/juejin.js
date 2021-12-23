@@ -5,7 +5,7 @@
     const style = document.createElement('style');
     const text = `
   #juejin .main-container { max-width: 80vw !important}
-  #juejin .main-container .main-area { width: calc(100% - 20rem - 16px)}
+  #juejin .main-container .main-area { width: calc(100% - 25rem - 16px)}
   #juejin .main-container .main-area .article-hero { max-width: 500px }
   `;
     style.appendChild(document.createTextNode(text));
