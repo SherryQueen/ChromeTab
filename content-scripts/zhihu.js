@@ -12,6 +12,8 @@
       text = document.createTextNode(`
       #root .ContentLayout,#root .Topstory-container,#root .Question-main {width:80vw !important}
       #root .ContentLayout-mainColumn,#root .Question-mainColumn,#root .Topstory-mainColumn {width:calc(80vw - 310px) !important}
+      #root .QuestionHeader .QuestionHeader-content {padding: 0 10vw;width:80vw;max-width:80vw}
+      #root .QuestionHeader .QuestionHeader-content .QuestionHeader-main {width:calc(100% - 300px)}
       `);
     }
     style.appendChild(text);
