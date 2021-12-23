@@ -18,7 +18,7 @@ export default {
           if (res.from !== 'null') arr.push(res.from)
           motto.value = `${res.hitokoto} -- ${arr.join('_')}`
         })
-        .catch(err => console.error('Hitokoto:', err))
+        .catch(() => { })
     })
 
     return { motto, value, onSearch, }
