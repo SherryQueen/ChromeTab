@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 
-interface IImage { url: string; data: string }
+interface IImage { url: string, copyright: string, copyrightlink: string, data: string }
 
 const _cacheKey = 'bg-image'
 const _imagePrefix = 'https://cn.bing.com'
-const _defaultImage = { url: './assets/default.webp', data: './assets/default.webp' }
+const _defaultImage: IImage = { url: './assets/default.webp', data: './assets/default.webp', copyright: '', copyrightlink: '' }
 const _cacheImage: IImage = JSON.parse((localStorage.getItem(_cacheKey) || JSON.stringify(_defaultImage)))
 
 const image = ref<IImage>(_cacheImage)
@@ -21,20 +21,17 @@ const _imageToDataURL = (url: string): Promise<string> => fetch(url)
 
 onMounted(async () => {
   try {
-    const res = await fetch('https://cn.bing.com/hp/api/v1/imagegallery?format=json', { mode: 'no-cors', credentials: 'omit' })
+    const res = await fetch('https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=zh-CN', { mode: 'no-cors', credentials: 'omit' })
       .then(res => res.json())
 
-    const { highDef, ultraHighDef } = res.data?.images[0]?.imageUrls?.landscape ?? { highDef: undefined, ultraHighDef: undefined }
-    if (image.value.url === highDef || image.value.url === ultraHighDef) return
+    const { url, copyright, copyrightlink } = res?.images[0] ?? { url: '', copyright: '', copyrightlink: '' }
+    if (image.value.url === url) return
 
-    const res1 = await _imageToDataURL(_imagePrefix + highDef)
-    image.value = { url: highDef, data: res1 }
-    localStorage.setItem(_cacheKey, JSON.stringify(image.value))
-
-    const res2 = await _imageToDataURL(_imagePrefix + ultraHighDef)
-    image.value = { url: ultraHighDef, data: res2 }
+    const data = await _imageToDataURL(_imagePrefix + url)
+    image.value = { url, data, copyright, copyrightlink }
     localStorage.setItem(_cacheKey, JSON.stringify(image.value))
   } catch (error) {
+    console.error('error', error)
     image.value = _defaultImage
   }
 })
@@ -42,10 +39,13 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="absolute bg-gray-300 w-screen h-screen" style="z-index: -1;">
-    <div class="cover w-full h-full">
+  <div class="absolute bg-gray-300 w-screen h-screen">
+    <div class="cover w-full h-full" style="z-index: -1;">
       <img v-if="!!image.url" :src="image.data" class="w-full h-full object-cover" />
     </div>
+    <a :href="image.copyrightlink" target="_blank" rel="noopener noreferrer">
+      <div class="absolute right-4 bottom-4 text-white">{{ image.copyright }}</div>
+    </a>
   </div>
 </template>
 
