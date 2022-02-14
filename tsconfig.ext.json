@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "extension",
+    "outDir": "dist",
+    "sourceMap": false,
+    "declaration": false
+  },
+  "include": [
+    "extension/**/*.ts"
+  ],
+  "types": [
+    "@types/chrome"
+  ]
+}
