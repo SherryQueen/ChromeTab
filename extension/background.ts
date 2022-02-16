@@ -3,6 +3,7 @@
     if (changeInfo.status !== 'loading' || !changeInfo.url) return;
 
     let targetUrl = changeInfo.url;
+    if (targetUrl === 'chrome://newtab/') return;
     if (targetUrl.includes('#')) targetUrl = targetUrl.slice(0, targetUrl.indexOf('#'));
     const tabs = await chrome.tabs.query({ url: targetUrl });
     if (tabs.length > 1) {
