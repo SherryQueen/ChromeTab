@@ -5,7 +5,7 @@
     let targetUrl = changeInfo.url;
     if (['chrome://newtab/', 'edge://newtab/'].includes(targetUrl)) return;
     if (targetUrl.includes('#')) targetUrl = targetUrl.slice(0, targetUrl.indexOf('#'));
-    const tabs = await chrome.tabs.query({ url: targetUrl });
+    const tabs = await chrome.tabs.query({ url: targetUrl, active: false });
     if (tabs.length > 1) {
       const targetTab = tabs.find((t) => t.id !== tabId);
       if (targetTab?.id) {
