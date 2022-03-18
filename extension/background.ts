@@ -11,8 +11,8 @@
       if (targetTab?.id) {
         await chrome.windows.update(targetTab.windowId, { focused: true });
         await chrome.tabs.update(targetTab.id, { active: true, highlighted: true });
+        chrome.tabs.remove(tabId);
       }
-      chrome.tabs.remove(tabId);
     }
   });
 })();
