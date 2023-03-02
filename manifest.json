@@ -17,7 +17,8 @@
   },
   "permissions": [
     "tabs",
-    "topSites"
+    "topSites",
+    "webNavigation"
   ],
   "host_permissions": [
     "https://cn.bing.com/",
