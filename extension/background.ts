@@ -23,8 +23,10 @@
     if (details.url.includes('bing.com/')) {
       const newHostname = 'global.bing.com';
       const obj = new URL(details.url);
-
       const search = new URLSearchParams(obj.search ?? '');
+
+      if (obj.hostname === newHostname && search.get('setlang') === 'en-us' && search.get('setmkt') === 'en-us') return;
+
       search.set('setlang', 'en-us');
       search.set('setmkt', 'en-us');
       const newURL = 'https://' + newHostname + obj.pathname + '?' + search.toString();
