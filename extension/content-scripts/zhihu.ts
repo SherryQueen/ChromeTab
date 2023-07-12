@@ -10,7 +10,7 @@
     #root .Post-NormalMain .Post-Header, #root .Post-NormalMain>div, .Post-NormalSub>div {width: 80vw !important}`);
     } else if (location.host === 'www.zhihu.com') {
       text = document.createTextNode(`
-      #root .ContentLayout,#root .Topstory-container,#root .Question-main {width:80vw !important}
+      #root .ContentLayout,#root .Topstory-container,#root .Container,#root .Question-main {max-width: 80vw !important;width:80vw !important}
       #root .ContentLayout-mainColumn,#root .Question-mainColumn,#root .Topstory-mainColumn {width:calc(80vw - 310px) !important}
       #root .QuestionHeader .QuestionHeader-content {padding: 0 10vw;width:80vw;max-width:80vw}
       #root .QuestionHeader .QuestionHeader-content .QuestionHeader-main {width:calc(100% - 300px)}
