@@ -13,7 +13,8 @@
     )
       return;
     if (targetUrl.includes('#')) targetUrl = targetUrl.slice(0, targetUrl.indexOf('#'));
-    const tabs = await chrome.tabs.query({ url: targetUrl, active: false });
+    const currentTab = await chrome.tabs.get(tabId);
+    const tabs = await chrome.tabs.query({ windowId: currentTab.windowId, url: targetUrl, active: false });
     if ((changeInfo.status === 'loading' && tabs.length === 1) || tabs.length > 1) {
       const targetTab = tabs.find((t) => t.id !== tabId);
       if (targetTab?.id) {
